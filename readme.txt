@@ -15,7 +15,7 @@ DailyNewsGet
 2.usage age:
 dng [opnion]
 	wituout arguments:
-		equal to ""
+		equal to "--help" with "-v"
 	with arguments:
 		-v print version
 		--help give some suggestion
