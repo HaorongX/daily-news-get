@@ -4,8 +4,8 @@ DailyNewsGet
 |
 |--saves
 |--installed
-|----software(s)
-|------software
+|----scripts
+|------script_name
 |------file_result(rules : Date[Year-Month-Day for example:2021-Jun-15]|website|TITLE)
 |--logs
 |--dng.out
