@@ -9,6 +9,7 @@ DailyNewsGet
 |------file_result(rules : Date[Year-Month-Day for example:2021-Jun-15]|website|TITLE)
 |--logs
 |--dng.out
+|--dng.c
 |--readme.txt
 |--version.txt
 2.usage age:
