@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #define FILE_VERSION "version.txt"
-#define FILE_README "readme.txt"
+#define FILE_README "helpmsg.txt"
 #define FILE_HELP FILE_README
 void file_echo(char* name)
 {
