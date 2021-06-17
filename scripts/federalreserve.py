@@ -2,6 +2,7 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 import os
+import re
 
 # 把“新闻稿”一栏的HTML爬下来
 news_list_url = "https://www.federalreserve.gov/newsevents.htm"
@@ -40,10 +41,13 @@ for i in news_url:
     # 获取内容&标题栏
     news_title_html = str(news_page_details.find_all('h3', class_='title'))
     news_html = str(news_page_details.find_all('div', class_='col-xs-12 col-sm-8 col-md-8'))
+    ex = "<(\S*?)*[^>]*>.*?|<.*? />" # 删除所有html标签
+    news_title_html = re.sub(ex,"",news_title_html)
+    news_html = re.sub(ex,"",news_html)
     # 写入文件
-    file = open(f"fed{num}.html", mode='w')
+    file = open(f"fed{num}.txt", mode='w')
     file.write(news_title_html[19:-6])
-    file.write("\n")
+    file.write("\n\n\n")
     file.write(news_html)
     file.close()
     num+=1

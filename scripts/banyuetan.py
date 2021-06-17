@@ -2,6 +2,7 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 import os
+import  re
 
 # 把今日谈上的“要闻”一栏的HTML爬下来
 news_list_url = "http://www.banyuetan.org/byt/jinritan/index.html"
@@ -30,11 +31,13 @@ for i in news_url:
     # 获取内容&标题栏
     news_title_html = str(news_page_details.find_all('h1'))
     news_html = str(news_page_details.find_all('div', class_='detail_content'))
+    ex = "<(\S*?)*[^>]*>.*?|<.*? />" # 删除所有html标签
+    news_title_html = re.sub(ex,"",news_title_html)
+    news_html = re.sub(ex,"",news_html)
     # 写入文件
-    file = open(f"jrt{num}.html", mode='w')
+    file = open(f"jrt{num}.txt", mode='w')
     file.write(news_title_html[5:-6])
-    file.write("\n")
+    file.write("\n\n\n")
     file.write(news_html)
     file.close()
     num+=1
-# os.system("rm ./news.html") # 删除产生的临时文件
