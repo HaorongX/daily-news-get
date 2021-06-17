@@ -1,7 +1,0 @@
-# 忽略keep文件
-*.keep
-*.gitkeep
-
-# 忽略可执行文件
-*.exe
-*.out
