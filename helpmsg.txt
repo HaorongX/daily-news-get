@@ -8,6 +8,6 @@ dng [opnion][arguments]
 		remove name
 			Uninstall a script (With delete its program)
 		execute
-			Execute the scripts on status 'open'
+			Execute all the scripts you have installed.
 		---help
 			type the help file
