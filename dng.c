@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <dirent.h>
 #define FILE_VERSION "version.txt"
 #define FILE_HELP "helpmsg.txt"
 #define FILE_EXIST (1)
@@ -44,9 +45,24 @@ void getscriptname(char *dest,char *source)
 	#endif
 	return ;
 }
+void file_execute(const char *name)
+{
+	FILE *fp = fopen(name,"r");
+	char command[MAX_BUFFER] = "";
+	if(NULL == fp)
+	{
+		return ;
+	}
+	while(fgets(command,MAX_BUFFER,fp))
+	{
+		system(command);
+	}
+	fclose(fp);
+	fp = NULL;
+}
 int file_exist(char *name)
 {
-	FILE* fp = fopen(name,"r");
+	FILE *fp = fopen(name,"r");
 	if(NULL == fp)
 	{
 		return FILE_UNEXIST;
@@ -97,7 +113,29 @@ int main(int argc,char *argv[])
 					}
 					else if(!strcmp(argv[1],"execute"))
 					{
-						
+						DIR *dir = NULL;/* installed */	
+						struct dirent *installeddir = NULL;
+						char filednfcalls[MAX_BUFFER] = "";
+						dir = opendir("./installed/");
+						if(NULL == dir)
+						{
+							puts("Error: Can't open the installed floder");
+							exit(-1);
+						}
+						while(installeddir = readdir(dir))
+						{
+							if(DT_DIR == (installeddir -> d_type))
+							{
+								#ifdef DEBUG
+									puts(installeddir -> d_name);
+								#endif
+								sprintf(filednfcalls,"./installed/%s/.dnfcalls",installeddir -> d_name);
+								file_execute(filednfcalls);/* execute script */
+							}
+						}
+						closedir(dir);
+						dir = NULL;
+						puts("Complete!");
 					}
 					break;
 				}
@@ -108,6 +146,7 @@ int main(int argc,char *argv[])
 						char syscalls[MAX_BUFFER] = "";
 						sprintf(syscalls,"rm -f -r ./installed/%s",argv[2]);
 						system(syscalls);
+						puts("Complete!");
 					}
 					break;
 				}
