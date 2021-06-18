@@ -19,22 +19,26 @@ index_html = \
 index_html = index_html.split()
 
 index = []
+title = []
 
 for i in index_html:
     if i[0:4] == "href":
         if i[6] == '.':
             index.append(base_url+i[8:-1])
+            title.append(i[8:-1])
         else:
             index.append(base_url+i[6:-1])
+            title.append(i[6:-1])
 # 完成一级跳转
 
 head = {'User-Agent': \
 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.101 Safari/537.36'}
 num = 1
+cnt = 0 
 for i in index:
     for j in range(0,2):
-        os.system(f"curl {str(i)} > temp.html")
-    tempin = open("temp.html", mode='r')
+        os.system(f"wget {str(i)} -o temp.temp")
+    tempin = open(f"{title[cnt]}", mode='r')
     temple = tempin.read()
     tempin.close()
     article_html = \
@@ -48,4 +52,5 @@ for i in index:
     file.write(article_html)
     file.close()
     num+=1
-# os.system("rm temp.html")
+    cnt+=1
+os.system("rm temp.temp")
