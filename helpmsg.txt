@@ -7,11 +7,7 @@ dng [opnion][arguments]
 			Install a script
 		remove name
 			Uninstall a script (With delete its program)
-		open [name]
-			Turn a script status into 'open'
-		close [name]
-			Turn a script status into 'close'
-		-c name
-			Get the calling command
+		execute
+			Execute the scripts on status 'open'
 		---help
-			type help infomation
+			type the help file

@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #define FILE_VERSION "version.txt"
-#define FILE_README "readme.txt"
 #define FILE_HELP "helpmsg.txt"
 #define FILE_EXIST (1)
 #define FILE_UNEXIST (0)
@@ -80,14 +79,13 @@ int main(int argc,char *argv[])
 {
 	if(1 == argc)/* Without arguments */
 	{
-		file_echo(FILE_VERSION);
 		file_echo(FILE_HELP);	
 	}
 	else
 	{
 		switch(argc)
 		{
-			case 2:/*-v --help -list -all -name*/
+			case 2:
 				{
 					if(!strcmp(argv[1],"-v"))
 					{
@@ -97,31 +95,42 @@ int main(int argc,char *argv[])
 					{
 						file_echo(FILE_HELP);
 					}
+					else if(!strcmp(argv[1],"execute"))
+					{
+						
+					}
 					break;
 				}
-			case 3:/* remove open close -name */
+			case 3:
 				{
+					if(!strcmp(argv[1],"remove"))
+					{
+						char syscalls[MAX_BUFFER] = "";
+						sprintf(syscalls,"rm -f -r ./installed/%s",argv[2]);
+						system(syscalls);
+					}
 					break;
 				}
-			default:/* install update -name */
+			default:
 				{
 					if(!strcmp(argv[1],"install"))
 					{
 						if(!file_exist(argv[2]))
 						{
+							/*
 							FILE *fp = fopen("record.dnf.ini","w");
 							if(NULL == fp)
 							{
 								puts("Fail:Create record file");
 								exit(-1);
 							}
+							*/
 							{
 								char dirname[MAX_BUFFER] ="./installed/";
 								strcat(dirname,argv[2]);
 								if(mkdir(dirname,0777))
 								{
-									puts("Fail:Create Floder");
-									exit(-1);
+									puts("Notice:Create floder failed");/* May installed and the dirtion exists  */
 								}
 							}
 							{
@@ -137,14 +146,99 @@ int main(int argc,char *argv[])
 									exit(-1);
 								}
 								{
-									int i = 0;
+									char program_arguments[MAX_BUFFER] = "";
+									char execute_arguments[MAX_BUFFER] = "";
+									char program[MAX_BUFFER] = "";
+									char execute[MAX_BUFFER] = "";
+									if(argc <= 4)
+									{
+										puts("Error: You should give execute program");
+										exit(-1);
+									}
+									strcpy(program,argv[3]);
+									if(!strcmp(argv[4],"-a"))/* dng install name program -a ... */
+									{
+										if(argc <= 6)
+										{
+											puts("Error: You should give arguments");
+											exit(-1);
+										}
+										strcpy(program_arguments,argv[5]);
+										#ifdef DEBUG
+											puts("program_arguments:");
+											puts(program_arguments);
+										#endif
+										/* dng install name program -a "Command" execute [ -a ["Command"] ] */
+										{
+											strcpy(execute,argv[4]);
+											if(argc <= 7)/* dnf install name program execute */
+											{
+												;/* Just do nothing */
+											}
+											else
+											{
+												if(!strcmp(argv[7],"-a"))
+												{
+													strcpy(execute_arguments,argv[8]);
+													#ifdef DEBUG
+														puts(execute_arguments);
+													#endif
+												}
+											}
+										}
+									}
+									else
+									{
+										strcpy(execute,argv[4]);
+										if(argc <= 5)/* dnf install name program execute */
+										{
+											;/* Just do nothing */
+										}
+										else
+										{
+											if(!strcmp(argv[5],"-a"))
+											{
+												if(argc <= 6)
+												{
+													puts("Error: You should give arguments");
+													exit(-1);
+												}
+												strcpy(execute_arguments,argv[6]);
+												#ifdef DEBUG
+													puts(execute_arguments);
+												#endif
+											}
+										}
+									}
+									/* copy script to installed */
+									char syscalls[MAX_BUFFER] = "";
+									char scriptname[MAX_BUFFER] = "";
+									getscriptname(scriptname,program);
+									sprintf(syscalls,"cp %s %s",program,scriptname);
+									system(syscalls);
+									/* execute [execute arguments] program(script) [program_arguments] */
+									fprintf(dnfcalls,"%s %s %s %s",execute,execute_arguments,scriptname,program_arguments);
+									fflush(dnfcalls);
+									#ifdef DEBUG
+										puts("string:");
+										printf("%s|%s|%s|%s\n",execute,execute_arguments,program,program_arguments);
+										puts("content:");
+										file_echo(filednfcallsname);
+									#endif
+									/*
+									int i = 2;
 									while((++i) < argc)
 									{
 										#ifdef DEBUG
 											puts(argv[i]);
 										#endif
+											
 									}
+									*/
 								}
+								fclose(dnfcalls);
+								dnfcalls = NULL;
+								puts("Complete!");
 							}
 							
 						}
