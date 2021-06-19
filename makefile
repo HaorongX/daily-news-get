@@ -1,5 +1,2 @@
-#git add .
-#git commit -m "comment"
-#git push origin master
-dng: dng.c
-	gcc dng.c -o dng.out
+dng: ./src/dng.c
+	gcc ./src/dng.c -o dng.out
