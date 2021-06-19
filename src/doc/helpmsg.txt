@@ -1,0 +1,13 @@
+dng [opnion][arguments]
+	wituout arguments:
+		Equal to "--help"
+	with arguments:
+		-v Print version
+		install name program [-a "arguments to script"] explain [-a "arguments to script"]
+			Install a script
+		remove name
+			Uninstall a script (With delete its program)
+		execute
+			Execute all the scripts you have installed.
+		---help
+			type the help file
