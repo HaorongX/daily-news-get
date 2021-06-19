@@ -41,6 +41,7 @@ for i in index:
     tempin = open(f"{title[cnt]}", mode='r')
     temple = tempin.read()
     tempin.close()
+    print(temple+"\n\n\n")
     article_html = \
         str(BeautifulSoup(str(temple),'lxml').find_all('div', class_='text_c'))
     # 此处的 <div class="text_c"> 是整片文章（标题作者正文）
