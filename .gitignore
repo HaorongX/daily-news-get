@@ -1,0 +1,11 @@
+# Keep
+*.keep
+*.gitkeep
+
+# Swap
+*.swap
+*.swp
+
+# Executable File
+*.exe
+*.out
