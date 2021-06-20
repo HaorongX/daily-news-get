@@ -1,3 +1,15 @@
+/*------------------------------------------------------
+*
+*
+* dng.c
+* The main part of the DNG program
+* 
+* src/dng.c
+*
+* Portions Copyright 2021 (c) Public Domain
+*
+*
+*-------------------------------------------------------*/
 #include <stdlib.h>
 #include <stdio.h> 
 #include <string.h>
@@ -5,93 +17,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <dirent.h>
-#include ""
+#include "include/dng_file.h"
+
 #define FILE_VERSION "version.txt"
 #define FILE_HELP "helpmsg.txt"
-#define FILE_EXIST (1)
-#define FILE_UNEXIST (0)
-#define MAX_BUFFER (1024)
 #define DEBUG
-int getcharpositionbehind(char *string,char c)
-{
-	int position = strlen(string);
-	if(position <= 0)
-	{
-		return -1;
-	}
-	while(string[position] != c)
-	{
-		position--;
-	}
-	return position;
-}
-void getscriptname(char *dest,char *source)
-{
-	int position = getcharpositionbehind(source,'/');
-	int length = strlen(source) - position;
-	#ifdef DEBUG
-		printf("position = %d\n",position);
-		printf("length = %d\n",length);
-	#endif
-	if(source[0] == '\'')
-	{
-		length--;
-	}
-	strncpy(dest,(source + position) + 1,length);
-	#ifdef DEBUG
-		puts("source:");
-		puts(source);
-		puts("dest:");
-		puts(dest);
-	#endif
-	return ;
-}
-void file_execute(const char *name)
-{
-	FILE *fp = fopen(name,"r");
-	char command[MAX_BUFFER] = "";
-	if(NULL == fp)
-	{
-		return ;
-	}
-	while(fgets(command,MAX_BUFFER,fp))
-	{
-		system(command);
-	}
-	fclose(fp);
-	fp = NULL;
-}
-int file_exist(char *name)
-{
-	FILE *fp = fopen(name,"r");
-	if(NULL == fp)
-	{
-		return FILE_UNEXIST;
-	}
-	else
-	{
-		fclose(fp);
-		return FILE_EXIST;
-	}
-	return 0;
-}
-void file_echo(char *name)
-{
-	FILE *file = NULL;
-	int c = 0;
-	file = fopen(name,"r");
-	if(NULL == file)
-	{
-		printf(name);
-		puts(" not found");
-		return ;
-	}
-	while(EOF != (c = fgetc(file)))
-	{
-		putchar(c);
-	}
-	return ;
-}
+
 int main(int argc,char *argv[])
 {
 	if(1 == argc)/* Without arguments */

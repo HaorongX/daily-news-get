@@ -7,10 +7,18 @@
 * 
 * src/dng_file.c
 *
-* Portions Copyright (c) 2021 DNG Group
+* Portions Copyright 2021 (c) Public Domain
 *
 *
-*/
+*--------------------------------------------------------*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <dirent.h>
+#include "include/dng_file.h"
+
+#undef DEBUG /* Already works well */
+
 void file_execute(const char *name)
 {
 	FILE *fp = fopen(name,"r");
