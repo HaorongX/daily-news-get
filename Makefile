@@ -17,10 +17,12 @@ default : install
 
 install: 
 	gcc src/*.c -o src/dng
-	@mkdir -p /usr/bin/installed
-	@mkdir -p /usr/bin/doc
-	cp -r src/*.* /usr/bin/
-	cp -r src/doc/*.* /usr/bin/doc
-
+	@sudo mkdir -p /usr/local/dng
+	@sudo mkdir -p /usr/local/dng/installed
+	@sudo mkdir -p /usr/local/dng/doc
+	@sudo cp -r -f src/dng /usr/local/dng
+	@sudo cp -r -f src/doc/*.* /usr/local/dng/doc
+	@sudo cp -f dng.sh /usr/bin/dng
+	@sudo chmod +x /usr/bin/dng
 
 	

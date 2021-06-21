@@ -1,0 +1,817 @@
+!SESSION 2021-06-21 09:57:54.886 -----------------------------------------------
+eclipse.buildId=4.20.0.I20210611-1600
+java.version=11.0.11
+java.vendor=Red Hat, Inc.
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.cpp.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.cpp.product
+
+!ENTRY org.eclipse.jface 2 0 2021-06-21 09:58:28.571
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 09:58:28.572
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7fe40b9f,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1f41f259,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 09:58:28.572
+!MESSAGE A conflict occurred for CTRL+SHIFT+D:
+Binding(CTRL+SHIFT+D,
+	ParameterizedCommand(Command(org.eclipse.jdt.debug.ui.commands.Display,Display,
+		Display result of evaluating selected text,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@648c80cb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.dialogAndWindow,,,system)
+Binding(CTRL+SHIFT+D,
+	ParameterizedCommand(Command(com.aptana.ide.syncing.ui.commands.download,Download...,
+		,
+		Category(com.aptana.ide.syncing.ui.commands.category,File Transfer,File Transfer Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4a9d6eb9,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+D,
+	ParameterizedCommand(Command(org.radrails.rails.ui.command.debug.server,Debug Server,
+		,
+		Category(org.radrails.rails.ui.category,Rails,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@157a2c86,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 09:58:28.572
+!MESSAGE A conflict occurred for ALT+SHIFT+X R:
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.run,Run on Server,
+		Run the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5b9c74a,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X R,
+	ParameterizedCommand(Command(com.aptana.ruby.debug.ui.RubyShortcut.run,Run Ruby Application,
+		Run Ruby Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@5b395ee,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2021-06-21 09:58:28.572
+!MESSAGE A conflict occurred for ALT+SHIFT+D R:
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(org.eclipse.wst.server.launchShortcut.debug,Debug on Server,
+		Debug the current selection on a server,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@24facb47,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D R,
+	ParameterizedCommand(Command(com.aptana.ruby.debug.ui.RubyShortcut.debug,Debug Ruby Application,
+		Debug Ruby Application,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6020cd42,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.857
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/haml.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.863
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/engineyard.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.868
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/capistrano.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.874
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/rspec.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.879
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/cucumber.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.884
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/heroku.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.890
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/816/0/.cp/bundles/php.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.895
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/rails.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.899
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/html.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.905
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/ruby.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.911
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/859/0/.cp/bundles/sass.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.925
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/shell-script.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.930
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/869/0/.cp/bundles/yaml.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.948
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/source.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.966
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/coffeescript.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.977
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/json.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.982
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/xml.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:50.987
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/js.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:51.011
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/css.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:51.027
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/869/0/.cp/bundles/math.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:51.040
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/bundle-development.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.core.jobs 4 2 2021-06-21 09:58:51.055
+!MESSAGE An internal error occurred during: "Loading bundle: /home/beginnerc/eclipse/cpp-2021-06/eclipse/configuration/org.eclipse.osgi/867/0/.cp/bundles/text.ruble".
+!STACK 0
+org.jruby.embed.EvalFailedException: (ArgumentError) wrong number of arguments (0 for 1)
+	at org.jruby.embed.internal.EmbedEvalUnitImpl.run(EmbedEvalUnitImpl.java:127)
+	at org.jruby.embed.ScriptingContainer.runUnit(ScriptingContainer.java:1231)
+	at org.jruby.embed.ScriptingContainer.runScriptlet(ScriptingContainer.java:1224)
+	at com.aptana.scripting.ScriptingEngine.getInitializedScriptingContainer(ScriptingEngine.java:292)
+	at com.aptana.scripting.model.ScriptLoadJob.run(ScriptLoadJob.java:76)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:144)
+	at com.aptana.scripting.model.AbstractScriptRunner.run(AbstractScriptRunner.java:180)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:274)
+	at com.aptana.scripting.ScriptingEngine.runScript(ScriptingEngine.java:243)
+	at com.aptana.scripting.model.BundleManager.loadScript(BundleManager.java:2032)
+	at com.aptana.scripting.model.BundleManager$BundleLoadJob.run(BundleManager.java:129)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.jruby.exceptions.RaiseException: (ArgumentError) wrong number of arguments (0 for 1)
+
+!ENTRY org.eclipse.ui 4 0 2021-06-21 09:59:03.871
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.IllegalArgumentException: Illegal character in query at index 94: http://content.aptana.com/aptana/my_aptana/?content=start&p=O&fg=000000&bg=ffffff&ch=e8e8e7&v={1}&id=55d97cc9-35b9-4e28-b89e-1891bed9da17&nl=en_US&ts=1624240742546
+	at java.base/java.net.URI.create(URI.java:883)
+	at org.eclipse.ui.internal.browser.BrowserViewer.lambda$0(BrowserViewer.java:241)
+	at org.eclipse.swt.browser.LocationListener$1.changing(LocationListener.java:81)
+	at org.eclipse.swt.browser.WebKit.webkit_decide_policy(WebKit.java:2476)
+	at org.eclipse.swt.browser.WebKit.webViewProc(WebKit.java:747)
+	at org.eclipse.swt.browser.WebKit.Proc(WebKit.java:668)
+	at org.eclipse.swt.internal.gtk3.GTK3.gtk_main_iteration_do(Native Method)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4596)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:654)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1435)
+Caused by: java.net.URISyntaxException: Illegal character in query at index 94: http://content.aptana.com/aptana/my_aptana/?content=start&p=O&fg=000000&bg=ffffff&ch=e8e8e7&v={1}&id=55d97cc9-35b9-4e28-b89e-1891bed9da17&nl=en_US&ts=1624240742546
+	at java.base/java.net.URI$Parser.fail(URI.java:2913)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3084)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3172)
+	at java.base/java.net.URI$Parser.parse(URI.java:3114)
+	at java.base/java.net.URI.<init>(URI.java:600)
+	at java.base/java.net.URI.create(URI.java:881)
+	... 29 more
+
+!ENTRY com.aptana.portal.ui 4 0 2021-06-21 09:59:04.363
+!MESSAGE (Build 3.6.0) [ERROR]  Error registering the Portal browser functions
+!STACK 0
+java.lang.IllegalStateException
+	at com.aptana.portal.ui.browser.AbstractPortalBrowserEditor.registerBrowserFunctions(AbstractPortalBrowserEditor.java:377)
+	at com.aptana.portal.ui.browser.AbstractPortalBrowserEditor.refreshBrowserRegistration(AbstractPortalBrowserEditor.java:390)
+	at com.aptana.portal.ui.browser.AbstractPortalBrowserEditor.access$0(AbstractPortalBrowserEditor.java:385)
+	at com.aptana.portal.ui.browser.AbstractPortalBrowserEditor$PortalTitleListener.changed(AbstractPortalBrowserEditor.java:417)
+	at org.eclipse.swt.browser.WebKit.lambda$16(WebKit.java:2691)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:5096)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4602)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:654)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1435)
+
+!ENTRY org.eclipse.ui.ide 4 0 2021-06-21 10:00:06.495
+!MESSAGE Could not import project located at /home/beginnerc/code/dng
+!STACK 0
+org.eclipse.ui.internal.wizards.datatransfer.CouldNotImportProjectException: Could not import project located at /home/beginnerc/code/dng
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:565)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.run(SmartImportJob.java:252)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:266)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:252)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:604)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:552)
+	... 2 more
+
+!ENTRY org.eclipse.core.resources 4 77 2021-06-21 10:01:56.402
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2021-06-21 10:01:56.403
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2021-06-21 10:01:56.403
+!MESSAGE /home/beginnerc/code/dng overlaps the workspace location: /home/beginnerc/code/dng
+
+!ENTRY org.eclipse.core.resources 4 77 2021-06-21 10:02:13.982
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2021-06-21 10:02:13.982
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2021-06-21 10:02:13.982
+!MESSAGE /home/beginnerc/code/dng overlaps the workspace location: /home/beginnerc/code/dng
+
+!ENTRY org.eclipse.core.resources 4 77 2021-06-21 10:02:56.344
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2021-06-21 10:02:56.344
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2021-06-21 10:02:56.344
+!MESSAGE /home/beginnerc/code/dng overlaps the workspace location: /home/beginnerc/code/dng
+
+!ENTRY org.eclipse.jface 4 0 2021-06-21 10:03:08.476
+!MESSAGE /icons/full/etool16/newprj_wiz.gif
+!STACK 0
+java.io.FileNotFoundException: /icons/full/etool16/newprj_wiz.gif
+	at org.eclipse.osgi.storage.url.bundleentry.Handler.findBundleEntry(Handler.java:55)
+	at org.eclipse.osgi.storage.url.BundleResourceHandler.openConnection(BundleResourceHandler.java:174)
+	at java.base/java.net.URL.openConnection(URL.java:1099)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.connect(PlatformURLConnection.java:115)
+	at org.eclipse.core.internal.boot.PlatformURLConnection.getURLAsLocal(PlatformURLConnection.java:240)
+	at org.eclipse.core.internal.runtime.PlatformURLConverter.toFileURL(PlatformURLConverter.java:37)
+	at org.eclipse.core.runtime.FileLocator.toFileURL(FileLocator.java:261)
+	at org.eclipse.jface.resource.URLImageDescriptor.getFilePath(URLImageDescriptor.java:243)
+	at org.eclipse.jface.resource.URLImageDescriptor.access$2(URLImageDescriptor.java:231)
+	at org.eclipse.jface.resource.URLImageDescriptor$URLImageFileNameProvider.getImagePath(URLImageDescriptor.java:58)
+	at org.eclipse.swt.internal.DPIUtil.validateAndGetImagePathAtZoom(DPIUtil.java:419)
+	at org.eclipse.swt.graphics.Image.<init>(Image.java:657)
+	at org.eclipse.jface.resource.URLImageDescriptor.createImage(URLImageDescriptor.java:274)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:227)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:55)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:72)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.get(ResourceManager.java:146)
+	at org.eclipse.ui.model.WorkbenchLabelProvider.getImage(WorkbenchLabelProvider.java:185)
+	at org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage(WrappedViewerLabelProvider.java:104)
+	at org.eclipse.jface.viewers.WrappedViewerLabelProvider.update(WrappedViewerLabelProvider.java:149)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:144)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:959)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:126)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1037)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:427)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:853)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:831)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:604)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:779)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.setExpandedState(AbstractTreeViewer.java:2526)
+	at org.eclipse.ui.internal.dialogs.ImportExportPage.treeDoubleClicked(ImportExportPage.java:233)
+	at org.eclipse.jface.viewers.StructuredViewer$1.run(StructuredViewer.java:782)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.fireDoubleClick(StructuredViewer.java:779)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.handleDoubleSelect(AbstractTreeViewer.java:1531)
+	at org.eclipse.jface.viewers.StructuredViewer$4.widgetDefaultSelected(StructuredViewer.java:1213)
+	at org.eclipse.jface.util.OpenStrategy.fireDefaultSelectionEvent(OpenStrategy.java:251)
+	at org.eclipse.jface.util.OpenStrategy.access$0(OpenStrategy.java:249)
+	at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:308)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5879)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1427)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:5121)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4599)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:823)
+	at org.eclipse.jface.window.Window.open(Window.java:799)
+	at org.eclipse.ui.internal.handlers.WizardHandler$Import.executeHandler(WizardHandler.java:153)
+	at org.eclipse.ui.internal.handlers.WizardHandler.execute(WizardHandler.java:283)
+	at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:283)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:97)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:319)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:253)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:173)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:488)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:487)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.ui.internal.handlers.LegacyHandlerService.executeCommand(LegacyHandlerService.java:389)
+	at org.eclipse.ui.internal.actions.CommandAction.runWithEvent(CommandAction.java:142)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:580)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:414)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5879)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1427)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:5121)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4599)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:654)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1435)
+
+!ENTRY org.eclipse.jface 4 2 2021-06-21 10:03:08.477
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.jface".
+!STACK 0
+org.eclipse.jface.resource.DeviceResourceException: Unable to create resource URLImageDescriptor(platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/newprj_wiz.gif)
+	at org.eclipse.jface.resource.ImageDescriptor.createResource(ImageDescriptor.java:229)
+	at org.eclipse.jface.resource.DeviceResourceManager.allocate(DeviceResourceManager.java:55)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.LocalResourceManager.allocate(LocalResourceManager.java:72)
+	at org.eclipse.jface.resource.AbstractResourceManager.create(AbstractResourceManager.java:88)
+	at org.eclipse.jface.resource.ResourceManager.get(ResourceManager.java:146)
+	at org.eclipse.ui.model.WorkbenchLabelProvider.getImage(WorkbenchLabelProvider.java:185)
+	at org.eclipse.jface.viewers.WrappedViewerLabelProvider.getImage(WrappedViewerLabelProvider.java:104)
+	at org.eclipse.jface.viewers.WrappedViewerLabelProvider.update(WrappedViewerLabelProvider.java:149)
+	at org.eclipse.jface.viewers.ViewerColumn.refresh(ViewerColumn.java:144)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:959)
+	at org.eclipse.jface.viewers.AbstractTreeViewer$UpdateItemSafeRunnable.run(AbstractTreeViewer.java:126)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.doUpdateItem(AbstractTreeViewer.java:1037)
+	at org.eclipse.jface.viewers.StructuredViewer$UpdateItemSafeRunnable.run(StructuredViewer.java:427)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.updateItem(StructuredViewer.java:2111)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createTreeItem(AbstractTreeViewer.java:853)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:831)
+	at org.eclipse.jface.viewers.TreeViewer.createChildren(TreeViewer.java:604)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.createChildren(AbstractTreeViewer.java:779)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.setExpandedState(AbstractTreeViewer.java:2526)
+	at org.eclipse.ui.internal.dialogs.ImportExportPage.treeDoubleClicked(ImportExportPage.java:233)
+	at org.eclipse.jface.viewers.StructuredViewer$1.run(StructuredViewer.java:782)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:45)
+	at org.eclipse.jface.util.SafeRunnable.run(SafeRunnable.java:174)
+	at org.eclipse.jface.viewers.StructuredViewer.fireDoubleClick(StructuredViewer.java:779)
+	at org.eclipse.jface.viewers.AbstractTreeViewer.handleDoubleSelect(AbstractTreeViewer.java:1531)
+	at org.eclipse.jface.viewers.StructuredViewer$4.widgetDefaultSelected(StructuredViewer.java:1213)
+	at org.eclipse.jface.util.OpenStrategy.fireDefaultSelectionEvent(OpenStrategy.java:251)
+	at org.eclipse.jface.util.OpenStrategy.access$0(OpenStrategy.java:249)
+	at org.eclipse.jface.util.OpenStrategy$1.handleEvent(OpenStrategy.java:308)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5879)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1427)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:5121)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4599)
+	at org.eclipse.jface.window.Window.runEventLoop(Window.java:823)
+	at org.eclipse.jface.window.Window.open(Window.java:799)
+	at org.eclipse.ui.internal.handlers.WizardHandler$Import.executeHandler(WizardHandler.java:153)
+	at org.eclipse.ui.internal.handlers.WizardHandler.execute(WizardHandler.java:283)
+	at org.eclipse.ui.internal.handlers.HandlerProxy.execute(HandlerProxy.java:283)
+	at org.eclipse.ui.internal.handlers.E4HandlerProxy.execute(E4HandlerProxy.java:97)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invokeUsingClass(InjectorImpl.java:319)
+	at org.eclipse.e4.core.internal.di.InjectorImpl.invoke(InjectorImpl.java:253)
+	at org.eclipse.e4.core.contexts.ContextInjectionFactory.invoke(ContextInjectionFactory.java:173)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceHandler.execute(HandlerServiceHandler.java:156)
+	at org.eclipse.core.commands.Command.executeWithChecks(Command.java:488)
+	at org.eclipse.core.commands.ParameterizedCommand.executeWithChecks(ParameterizedCommand.java:487)
+	at org.eclipse.e4.core.commands.internal.HandlerServiceImpl.executeHandler(HandlerServiceImpl.java:213)
+	at org.eclipse.ui.internal.handlers.LegacyHandlerService.executeCommand(LegacyHandlerService.java:389)
+	at org.eclipse.ui.internal.actions.CommandAction.runWithEvent(CommandAction.java:142)
+	at org.eclipse.jface.action.ActionContributionItem.handleWidgetSelection(ActionContributionItem.java:580)
+	at org.eclipse.jface.action.ActionContributionItem.lambda$4(ActionContributionItem.java:414)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:89)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5879)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1427)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:5121)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4599)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1157)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1046)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:644)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:551)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:156)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:152)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:654)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1462)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1435)
+
+!ENTRY org.eclipse.core.resources 4 77 2021-06-21 10:03:26.023
+!MESSAGE Invalid project description.
+!SUBENTRY 1 unknown 0 0 2021-06-21 10:03:26.023
+!MESSAGE OK
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2021-06-21 10:03:26.023
+!MESSAGE /home/beginnerc/code/dng overlaps the workspace location: /home/beginnerc/code/dng
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-06-21 10:04:16.482
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.oomph.setup.ui.SetupUIPlugin$1$1
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-06-21 10:04:16.483
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: org.eclipse.oomph.setup.internal.core.util.ResourceMirror$LoadJob
+
+!ENTRY org.eclipse.core.jobs 2 2 2021-06-21 10:04:16.483
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.aptana.usage.internal.DefaultAnalyticsEventHandler$1
