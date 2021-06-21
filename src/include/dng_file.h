@@ -18,7 +18,7 @@
 #define MAX_BUFFER (1024)
 
 void file_execute(const char *name);
-int file_exist(char *name);
-void file_echo(char *name);
+int file_exist(const char *name);
+void file_echo(const char *name);
 
 #endif

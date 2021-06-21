@@ -9,3 +9,4 @@
 # Executable File
 *.exe
 *.out
+/.metadata/

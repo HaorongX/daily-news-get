@@ -4,7 +4,7 @@
 * dng_file.c
 * Provide some file function
 * Achieve src/include/dng_file.h
-* 
+*
 * src/dng_file.c
 *
 * Portions Copyright 2021 (c) Public Domain
@@ -19,50 +19,75 @@
 
 #undef DEBUG /* Already works well */
 
-void file_execute(const char *name)
+void
+file_execute(const char *name)
+/*
+	Call the system command to execute a file content
+*/
 {
-	FILE *fp = fopen(name,"r");
-	char command[MAX_BUFFER] = "";
-	if(NULL == fp)
-	{
-		return ;
-	}
-	while(fgets(command,MAX_BUFFER,fp))
-	{
-		system(command);
-	}
-	fclose(fp);
-	fp = NULL;
+    FILE *fp = NULL;
+    char command[MAX_BUFFER] = "";
+
+    fp = fopen(name,"r");
+         if(NULL == fp)
+             return ;
+
+    while(fgets(command,MAX_BUFFER,fp))
+        system(command);
+
+    fclose(fp);
+    fp = NULL;
 }
-int file_exist(char *name)
+int
+file_exist(const char *name)
+/*
+	Try to switch the status of file
+	Return :
+	FILE_EXIST
+	FILE_UNEXIST
+	-1
+*/
 {
-	FILE *fp = fopen(name,"r");
-	if(NULL == fp)
-	{
-		return FILE_UNEXIST;
-	}
-	else
-	{
-		fclose(fp);
-		return FILE_EXIST;
-	}
-	return 0;
+    FILE *fp = NULL;
+
+    fp = fopen(name,"r");
+
+    if(NULL == fp)
+        return FILE_UNEXIST;
+
+    else
+    {
+        fclose(fp);
+        return FILE_EXIST;
+    }
+
+    /* Failure out of expect */
+    return -1;
 }
-void file_echo(char *name)
+void 
+file_echo(const char *name)
+/*
+    Type a txt file content
+*/
 {
-	FILE *file = NULL;
-	int c = 0;
-	file = fopen(name,"r");
-	if(NULL == file)
-	{
-		printf(name);
-		puts(" not found");
-		return ;
-	}
-	while(EOF != (c = fgetc(file)))
-	{
-		putchar(c);
-	}
-	return ;
+    FILE *file = NULL;
+    int c = 0;
+    
+    file = fopen(name,"r");
+    
+    if(NULL == file)
+    {
+        
+#ifdef DEBUG
+        printf(name);
+        puts(" not found");
+#endif
+        return ;
+    }
+    
+    while(EOF != (c = fgetc(file)))
+        putchar(c);
+    
+    return ;
 }
 
