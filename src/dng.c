@@ -37,7 +37,7 @@ main(int argc,char *argv[])
         file_echo(FILE_HELP);
     else
     {
-        switch(argc)
+        switch(argc)/* argc refers to the number of dng arguments */
         {
         case 2:
             if(!strcmp(argv[1],"-v"))
@@ -57,7 +57,7 @@ main(int argc,char *argv[])
                     exit(-1);
                 }
 
-                while(installeddir = readdir(dir))
+                while(NULL != (installeddir = readdir(dir)))
                 {
                     if(DT_DIR == (installeddir -> d_type))
                     {
@@ -175,7 +175,7 @@ main(int argc,char *argv[])
                     
                     /* copy script to installed */
                     getscriptname(scriptname,program);
-                    sprintf(syscalls,"cp %s %s",program,scriptname);
+                    sprintf(syscalls,"cp %s ./installed/%s",program,scriptname);
                     system(syscalls);
                     
                     /* execute [execute arguments] program(script) [program_arguments] */
