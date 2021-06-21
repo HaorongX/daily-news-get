@@ -1,5 +1,6 @@
 # Keep
 *.keep
+*.kdev4
 *.gitkeep
 
 # Swap
@@ -9,3 +10,4 @@
 # Executable File
 *.exe
 *.out
+/.metadata/
