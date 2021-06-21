@@ -80,7 +80,7 @@ main(int argc,char *argv[])
             {
                 char syscalls[MAX_BUFFER] = "";
 
-                sprintf(syscalls,"rm -f -r ./installed/%s",argv[2]);
+                sprintf(syscalls,"rm -f -r ./installed/%s /dev/null",argv[2]);
 
                 system(syscalls);
                 puts("Complete!");
@@ -175,11 +175,11 @@ main(int argc,char *argv[])
                     
                     /* copy script to installed */
                     getscriptname(scriptname,program);
-                    sprintf(syscalls,"cp %s ./installed/%s",program,scriptname);
+                    sprintf(syscalls,"cp %s ./installed/%s /dev/null",program,scriptname);
                     system(syscalls);
                     
                     /* execute [execute arguments] program(script) [program_arguments] */
-                    fprintf(dnfcalls,"%s %s %s %s",execute,execute_arguments,scriptname,program_arguments);
+                    fprintf(dnfcalls,"%s %s ./installed/%s %s",execute,execute_arguments,scriptname,program_arguments);
                     fflush(dnfcalls);
 #ifdef DEBUG
                     puts("string:");
