@@ -16,7 +16,7 @@
 #include "include/dng_string.h"
 #include "include/dng_system.h"
 
-#define MAX_BUFFER (1024)
+
 
 void
 initworkdir(const char *argv_arguments /* should be argv[0] */ )

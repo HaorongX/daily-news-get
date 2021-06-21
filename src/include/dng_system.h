@@ -12,5 +12,7 @@
 *
 *
 *-------------------------------------------------------*/
+#define MAX_BUFFER (1024)
+
 void initworkdir(const char *argv_arguments);
 #endif
