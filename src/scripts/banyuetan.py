@@ -1,3 +1,5 @@
+# Portions Copyright 2021 (c) Public Domain
+
 import requests
 import lxml
 from bs4 import BeautifulSoup
