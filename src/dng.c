@@ -19,14 +19,20 @@
 #include <dirent.h>
 #include "include/dng_file.h"
 #include "include/dng_string.h"
+#include "include/dng_system.h"
 
-#define FILE_VERSION "version.txt"
-#define FILE_HELP "helpmsg.txt"
+#define FILE_VERSION "./doc/version.txt"
+#define FILE_HELP "./doc/helpmsg.txt"
 #define DEBUG
 
 int
 main(int argc,char *argv[])
 {
+    initworkdir(argv[0]);
+#ifdef DEBUG
+    system("pwd");
+    puts(argv[0]);
+#endif
     if(1 == argc)/* without arguments */
         file_echo(FILE_HELP);
     else
@@ -166,10 +172,12 @@ main(int argc,char *argv[])
                             }
                         }
                     }
+                    
                     /* copy script to installed */
                     getscriptname(scriptname,program);
                     sprintf(syscalls,"cp %s %s",program,scriptname);
                     system(syscalls);
+                    
                     /* execute [execute arguments] program(script) [program_arguments] */
                     fprintf(dnfcalls,"%s %s %s %s",execute,execute_arguments,scriptname,program_arguments);
                     fflush(dnfcalls);
