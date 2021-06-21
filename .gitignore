@@ -1,5 +1,6 @@
 # Keep
 *.keep
+*.kdev4
 *.gitkeep
 
 # Swap
