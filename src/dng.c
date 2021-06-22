@@ -42,7 +42,7 @@ puts(argv[0]);
         switch(argc)/* argc refers to the number of dng arguments */
         {
         case 2:
-            if(!strcmp(argv[1],"-v"))
+            if(!strcmp(argv[1],"-v")) /* Complete */
                 file_echo(FILE_VERSION);
             else if(!strcmp(argv[1],"--help"))
                 file_echo(FILE_HELP);
@@ -82,7 +82,7 @@ puts(installeddir -> d_name);
             {
                 char syscalls[MAX_BUFFER] = "";
 
-                sprintf(syscalls,"rm -f -r ./usr/local/dng/installed/%s /dev/null",argv[2]);
+                sprintf(syscalls,"rm -f -r /usr/local/dng/installed/%s > /dev/null",argv[2]);
 
                 system(syscalls);
                 puts("Complete!");
@@ -93,7 +93,7 @@ puts(installeddir -> d_name);
             {
                 if(!file_exist(argv[2]))
                 {
-                    char dirname[MAX_BUFFER] ="/usr/local/dng/installed/";
+                    char dirname[MAX_BUFFER] ="/usr/local/dng/installed";
                     char filednfcallsname[MAX_BUFFER] = "";
                     char execute_arguments[MAX_BUFFER] = "";
                     char program[MAX_BUFFER] = "";
@@ -103,8 +103,11 @@ puts(installeddir -> d_name);
                     char scriptname[MAX_BUFFER] = "";
                     FILE *dnfcalls = NULL;
                     
-                    strcat(dirname,argv[2]);
-                    
+                    //strcat(dirname,argv[3]);
+                    sprintf(dirname,"/usr/local/dng/installed/%s/",argv[2]);
+#ifdef DEBUG
+puts(dirname);
+#endif
                     if(mkdir(dirname,0777))
                         puts("Notice:Create floder failed");/* May installed and the dirtion exists  */
 
@@ -181,7 +184,7 @@ puts(execute_arguments);
                     
                     /* copy script to installed */
                     getscriptname(scriptname,program);
-                    sprintf(syscalls,"cp %s /usr/local/dng/installed/%s /dev/null",program,scriptname);
+                    sprintf(syscalls,"cp %s /usr/local/dng/installed/%s/ > /dev/null",program,scriptname);
                     system(syscalls);
                     
 #ifdef DEBUG
