@@ -21,13 +21,16 @@
 #include "include/dng_string.h"
 #include "include/dng_system.h"
 
-#define FILE_VERSION "./doc/version.txt"
-#define FILE_HELP "./doc/helpmsg.txt"
+#define FILE_VERSION "/usr/local/dng/doc/version.txt"
+#define FILE_HELP "/usr/local/dng/doc/helpmsg.txt"
 
 int
 main(int argc,char *argv[])
 {
-    initworkdir(argv[0]);
+
+	//may need't
+   	/* initworkdir(argv[0]); */
+	system("cd /usr/local/dng");/* This may works */
 #ifdef DEBUG
 system("pwd");
 puts(argv[0]);
@@ -49,7 +52,7 @@ puts(argv[0]);
                 struct dirent *installeddir = NULL;
                 char filednfcalls[MAX_BUFFER] = "";
 
-                dir = opendir("./installed/");
+                dir = opendir("/usr/local/dng/installed/");
                 if(NULL == dir)
                 {
                     puts("Error: Can't open the installed floder");
@@ -63,7 +66,7 @@ puts(argv[0]);
 #ifdef DEBUG
 puts(installeddir -> d_name);
 #endif
-                        sprintf(filednfcalls,"./installed/%s/.dnfcalls",installeddir -> d_name);
+                        sprintf(filednfcalls,"/usr/local/dng/installed/%s/.dnfcalls",installeddir -> d_name);
                         file_execute(filednfcalls);/* execute script */
                     }
                 }
@@ -79,7 +82,7 @@ puts(installeddir -> d_name);
             {
                 char syscalls[MAX_BUFFER] = "";
 
-                sprintf(syscalls,"rm -f -r ./installed/%s /dev/null",argv[2]);
+                sprintf(syscalls,"rm -f -r ./usr/local/dng/installed/%s /dev/null",argv[2]);
 
                 system(syscalls);
                 puts("Complete!");
@@ -90,7 +93,7 @@ puts(installeddir -> d_name);
             {
                 if(!file_exist(argv[2]))
                 {
-                    char dirname[MAX_BUFFER] ="./installed/";
+                    char dirname[MAX_BUFFER] ="/usr/local/dng/installed/";
                     char filednfcallsname[MAX_BUFFER] = "";
                     char execute_arguments[MAX_BUFFER] = "";
                     char program[MAX_BUFFER] = "";
@@ -105,7 +108,7 @@ puts(installeddir -> d_name);
                     if(mkdir(dirname,0777))
                         puts("Notice:Create floder failed");/* May installed and the dirtion exists  */
 
-                    sprintf(filednfcallsname,"./installed/%s/.dnfcalls",argv[2]);
+                    sprintf(filednfcallsname,"/usr/local/dng/installed/%s/.dnfcalls",argv[2]);
 #ifdef DEBUG
 puts(filednfcallsname);
 #endif
@@ -178,14 +181,14 @@ puts(execute_arguments);
                     
                     /* copy script to installed */
                     getscriptname(scriptname,program);
-                    sprintf(syscalls,"cp %s ./installed/%s /dev/null",program,scriptname);
+                    sprintf(syscalls,"cp %s /usr/local/dng/installed/%s /dev/null",program,scriptname);
                     system(syscalls);
                     
 #ifdef DEBUG
 puts(execute_arguments);
 #endif
                     /* execute [execute arguments] program(script) [program_arguments] */
-                    fprintf(dnfcalls,"%s %s ./installed/%s %s",execute,execute_arguments,scriptname,program_arguments);
+                    fprintf(dnfcalls,"%s %s /usr/local/dng/installed/%s %s",execute,execute_arguments,scriptname,program_arguments);
                     fflush(dnfcalls);
                     
 #ifdef DEBUG
