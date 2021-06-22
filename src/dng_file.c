@@ -17,8 +17,6 @@
 #include <dirent.h>
 #include "include/dng_file.h"
 
-#undef DEBUG /* Already works well */
-
 void
 file_execute(const char *name)
 /*
