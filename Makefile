@@ -26,6 +26,7 @@ install:
 	@sudo chmod +x /usr/bin/dng
 
 # This part design for the developers
+
 dev:
 	gcc src/*.c -o src/dng -D DEBUG
 	sudo mkdir -p /usr/local/dng

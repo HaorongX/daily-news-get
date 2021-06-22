@@ -26,6 +26,10 @@ file_execute(const char *name)
     FILE *fp = NULL;
     char command[MAX_BUFFER] = "";
 
+#ifdef DEBUG
+puts(name);
+#endif
+
     fp = fopen(name,"r");
          if(NULL == fp)
              return ;
@@ -72,13 +76,17 @@ file_echo(const char *name)
     int c = 0;
     
     file = fopen(name,"r");
-    
+
+#ifdef DEBUG
+puts(name);
+#endif    
+
     if(NULL == file)
     {
         
 #ifdef DEBUG
-        printf(name);
-        puts(" not found");
+printf(name);
+puts(" not found");
 #endif
         return ;
     }

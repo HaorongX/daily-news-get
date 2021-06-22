@@ -23,8 +23,16 @@ initworkdir(const char *argv_arguments /* should be argv[0] */ )
  */
 {
     char executedir[MAX_BUFFER] = "";
-    
+
+#ifdef DEBUG
+puts(argv_arguments);
+#endif
+   
     strncpy(executedir,argv_arguments,strlen(argv_arguments) - strlen("dng.out"));
+
+#ifdef DEBUG
+puts(executedir);
+#endif
     
     chdir(executedir);
     return ;

@@ -29,8 +29,8 @@ main(int argc,char *argv[])
 {
     initworkdir(argv[0]);
 #ifdef DEBUG
-    system("pwd");
-    puts(argv[0]);
+system("pwd");
+puts(argv[0]);
 #endif
     if(1 == argc)/* without arguments */
         file_echo(FILE_HELP);
@@ -61,7 +61,7 @@ main(int argc,char *argv[])
                     if(DT_DIR == (installeddir -> d_type))
                     {
 #ifdef DEBUG
-                        puts(installeddir -> d_name);
+puts(installeddir -> d_name);
 #endif
                         sprintf(filednfcalls,"./installed/%s/.dnfcalls",installeddir -> d_name);
                         file_execute(filednfcalls);/* execute script */
@@ -107,7 +107,7 @@ main(int argc,char *argv[])
 
                     sprintf(filednfcallsname,"./installed/%s/.dnfcalls",argv[2]);
 #ifdef DEBUG
-                    puts(filednfcallsname);
+puts(filednfcallsname);
 #endif
                     if(!(dnfcalls = fopen(filednfcallsname,"w")))
                     {
@@ -132,8 +132,8 @@ main(int argc,char *argv[])
                         }
                         strcpy(program_arguments,argv[5]);
 #ifdef DEBUG
-                        puts("program_arguments:");
-                        puts(program_arguments);
+puts("program_arguments:");
+puts(program_arguments);
 #endif
                         /* dng install name program -a "Command" execute [ -a ["Command"] ] */
                         strcpy(execute,argv[4]);
@@ -144,9 +144,11 @@ main(int argc,char *argv[])
                             if(!strcmp(argv[7],"-a"))
                             {
                                 strcpy(execute_arguments,argv[8]);
+                                
 #ifdef DEBUG
-                                puts(execute_arguments);
+puts(execute_arguments);
 #endif
+
                             }
                         }
                     }
@@ -165,9 +167,11 @@ main(int argc,char *argv[])
                                     exit(-1);
                                 }
                                 strcpy(execute_arguments,argv[6]);
+                                
 #ifdef DEBUG
-                                puts(execute_arguments);
+puts(execute_arguments);
 #endif
+
                             }
                         }
                     }
@@ -177,15 +181,20 @@ main(int argc,char *argv[])
                     sprintf(syscalls,"cp %s ./installed/%s /dev/null",program,scriptname);
                     system(syscalls);
                     
+#ifdef DEBUG
+puts(execute_arguments);
+#endif
                     /* execute [execute arguments] program(script) [program_arguments] */
                     fprintf(dnfcalls,"%s %s ./installed/%s %s",execute,execute_arguments,scriptname,program_arguments);
                     fflush(dnfcalls);
+                    
 #ifdef DEBUG
-                    puts("string:");
-                    printf("%s|%s|%s|%s\n",execute,execute_arguments,program,program_arguments);
-                    puts("content:");
-                    file_echo(filednfcallsname);
+puts("string:");
+printf("%s|%s|%s|%s\n",execute,execute_arguments,program,program_arguments);
+puts("content:");
+file_echo(filednfcallsname);
 #endif
+
                     fclose(dnfcalls);
                     dnfcalls = NULL;
                     

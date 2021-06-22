@@ -39,6 +39,10 @@ getcharpositionbehind(char *string,char c)
     while(string[position] != c)
         position--;
     
+#ifdef DEBUG
+printf("\nposition = %d\n",position);
+#endif
+    
     return position;
 }
 void
@@ -60,8 +64,8 @@ getscriptname(char *dest,char *source)
     length = strlen(source) - position;
     
 #ifdef DEBUG
-    printf("position = %d\n",position);
-    printf("length = %d\n",length);
+printf("position = %d\n",position);
+printf("length = %d\n",length);
 #endif
 
     if(source[0] == '\'')
@@ -70,10 +74,10 @@ getscriptname(char *dest,char *source)
     strncpy(dest,(source + position) + 1,length);
 
 #ifdef DEBUG
-    puts("source:");
-    puts(source);
-    puts("dest:");
-    puts(dest);
+puts("source:");
+puts(source);
+puts("dest:");
+puts(dest);
 #endif
 
     return ;
