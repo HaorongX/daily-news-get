@@ -16,8 +16,6 @@
 #include "include/dng_string.h"
 #include "include/dng_system.h"
 
-
-
 void
 initworkdir(const char *argv_arguments /* should be argv[0] */ )
 /*

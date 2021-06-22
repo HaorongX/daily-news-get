@@ -16,8 +16,6 @@
 #include <stdio.h>
 #include "include/dng_string.h"
 
-#undef DEBUG /* Already works well */
-
 int
 getcharpositionbehind(char *string,char c)
 /*

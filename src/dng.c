@@ -23,7 +23,6 @@
 
 #define FILE_VERSION "./doc/version.txt"
 #define FILE_HELP "./doc/helpmsg.txt"
-#define DEBUG
 
 int
 main(int argc,char *argv[])
