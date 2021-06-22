@@ -1,0 +1,15 @@
+# Keep
+*.keep
+*.kdev4
+*.gitkeep
+
+# Swap
+*.swap
+*.swp
+
+# Executable File
+*.exe
+*.out
+
+# metadata(gen by IDE)
+/.metadata/
