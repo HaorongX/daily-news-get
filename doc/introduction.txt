@@ -1,0 +1,50 @@
+###################################
+#               DNG:Daily News Gather                                   #
+#                        Keep Simple	                                          #
+###################################
+			 
+			 #	 	introduction	  #
+				 #    Part 1   #
+
+With the development of the times,it's more and more
+important to know what happend every day.
+For us,if we just care about ourselves and don't se-
+ek the chance to find out the world.
+We will lose the chance to open our mind and never l
+earn the means of working together.
+So, as the conclusion, we deside to create the proje
+ct and let it become our personal new gather tools.
+It also improve our coding skills.
+
+			#		The structure	  #
+					#   Part 2    #
+
+Our design floder is follow the graphics:
+
+				    #   Part 2.1  #
+Brief version
+project
+|
+|---- Makefile : To build the project(make install or make dev)
+|			     ("make" => "make install")
+|
+|---- LICENSE : DNG's license is the Unlisense 
+|
+|
+|---- dng.sh : the shell file to call the dng program
+|
+|
+|---- src : all the source of dng program
+|			(Beside the dng.sh)
+|
+|---- doc : the documents of dng project
+
+				    #   Part 2.2   #
+
+src
+|
+|
+|---- dng_program : The main part of dng_program
+|
+|
+|---- scripts : The optional extension
