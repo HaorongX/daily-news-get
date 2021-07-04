@@ -37,7 +37,8 @@ dev:
 	
 	#Clean up old install shell file
 	sudo rm -f $(INSTALL_PATH)/$(PROJECT_NAME).sh
-	
+	#Clean up project shell file
+	sudo rm -f $(PROJECT_NAME).sh
 	#Create Install Shell File
 	echo cd $(INSTALL_PATH) >> $(PROJECT_NAME).sh 
 	echo -n $(INSTALL_PATH)/$(PROJECT_NAME)/$(PROJECT_NAME).out  >> $(PROJECT_NAME).sh
@@ -85,3 +86,8 @@ clean:
 	rm -f  $(SRCPATH)/$(PROJECT_NAME)_installed_scripts_status/$(PROJECT_NAME)_installed_scripts_status.out
 	rm -f  $(SRCPATH)/$(PROJECT_NAME)_setoutput/$(PROJECT_NAME)_setoutput.out
 	rm -f  $(SRCPATH)/$(PROJECT_NAME).out
+	#Clean up old install shell file
+	sudo rm -f $(INSTALL_PATH)/$(PROJECT_NAME).sh
+	#Clean up project shell file
+	sudo rm -f $(PROJECT_NAME).sh
+
