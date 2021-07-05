@@ -1,2 +1,0 @@
-DNG -- Daily News Gather
-Version 0.0.3 Beta
