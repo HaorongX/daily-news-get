@@ -10,7 +10,11 @@
  *      
  *      Portions Copyright (c) Public Domain
  *------------------------------------------------------------------------------------*/
-#include "common.h"
-#include "filepath.h"
+#define MAX_BUFFER 1024
+
+int GetProgramSelfFullPath(char *path, int size);
+int GetLastCharacterPosition(const char *str, char c);
+int GetProgramSelfPath(char *path, int size);
+int ChangeWorkDirectory(const char *path);
 int InitWorkEnviroment(void);
 #endif

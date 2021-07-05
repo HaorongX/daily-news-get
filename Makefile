@@ -25,14 +25,6 @@ dev:
 	sudo rm -f  $(SRCPATH)/$(PROJECT_NAME).out
 
 	#Compile C Program
-	gcc $(SRCPATH)/$(PROJECT_NAME)_help/$(PROJECT_NAME)_help.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_help/$(PROJECT_NAME)_help.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_list/$(PROJECT_NAME)_list.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_list/$(PROJECT_NAME)_list.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_change/$(PROJECT_NAME)_change.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_change/$(PROJECT_NAME)_change.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_execute/$(PROJECT_NAME)_execute.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_execute/$(PROJECT_NAME)_execute.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_install/$(PROJECT_NAME)_install.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_install/$(PROJECT_NAME)_install.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_remove/$(PROJECT_NAME)_remove.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_remove/$(PROJECT_NAME)_remove.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_installed_scripts_status/$(PROJECT_NAME)_installed_scripts_status.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_installed_scripts_status/$(PROJECT_NAME)_installed_scripts_status.out
-	gcc $(SRCPATH)/$(PROJECT_NAME)_setoutput/$(PROJECT_NAME)_setoutput.c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME)_setoutput/$(PROJECT_NAME)_setoutput.out
 	gcc $(SRCPATH)/$(PROJECT_NAME).c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME).out
 	
 	#Clean up old install shell file
