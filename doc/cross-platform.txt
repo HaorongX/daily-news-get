@@ -1,1 +1,0 @@
-The dng design to run only the linux.
