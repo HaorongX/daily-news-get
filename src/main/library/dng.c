@@ -8,7 +8,7 @@
  *      
  *      Portions Copyright (c) Public Domain
  *------------------------------------------------------------------------------------*/
-#include "../include/dng.h"
+#include "../library/dng.h"
 #include <unistd.h> /* For chdir */
 #include <string.h>
 #include <stdio.h>

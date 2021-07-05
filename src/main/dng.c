@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "include/dng.h"
+#include "library/dng.h"
 #define DNG_COMMAND_FILE_NAME "test.txt"
 typedef struct _ConversionRelations
 {
