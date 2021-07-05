@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------------------------
  *       
  *     dng.c  
- *          install & remove & execute the scripts
+ *          command parse
  *   
  *      Directory
  *          src/dng_program/dng.c
@@ -14,6 +14,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "include/dng.h"
+#define DNG_COMMAND_FILE_NAME "test.txt"
 typedef struct _ConversionRelations
 {
 	char command[16];
@@ -47,6 +48,10 @@ typedef struct _ConversionRelations
 void 
 CombineMainFunctionArguments(char *dest, int main_argc, char **main_argv, int narg)
 {
+    if(narg > main_argc)
+    {
+        return ;
+    }
     /* According to experience, argv[0] always is the full path of execture program itself*/
     for(int i = narg - 1;i < main_argc;i++)
     {
@@ -67,14 +72,14 @@ SearchDNGConversionRelations(ConversionRelations *table, const char *command)
     ConversionRelations *temp = NULL;
     bool flag_of_match = false;
     temp = table -> first;
-	while(NULL != temp -> next)
+	while(NULL != temp)
     {
-        temp = temp -> next;
-        if(0 == strcmp(temp -> current -> command, command))
+        if(0 == strcmp(temp -> command, command))
         {
             flag_of_match = true;
             break;
         }
+        temp = temp -> current -> next;
     }
     if(flag_of_match)
     {    
@@ -91,25 +96,77 @@ SearchDNGConversionRelations(ConversionRelations *table, const char *command)
 ConversionRelations *
 ConventDNGCommandFileContentToMemory(FILE *fp)
 {
-    ConversionRelations *table = NULL;
+    ConversionRelations *table = NULL, *temp = NULL;
     char command[16] = {0};
 	char program_full_path[512] = {0};
+    int result_of_fscanf = 0;
     /* From file content to table */
     if(NULL == (table = (ConversionRelations *)calloc(sizeof(struct _ConversionRelations), 1)))
 	{
 		return NULL;
 	}
-	table -> first = (struct _ConversionRelations *)table; /* That is itself */
-	while(2 == fscanf(fp, "[record]\n%s => %s\n", command, program_full_path))/* Avoid empty file */
+	while(true)/* Avoid empty file */
 	{
-        table -> current = (struct _ConversionRelations *)table; /* itself */
+        if(NULL == table -> first)
+        {
+            table -> first = table;
+        }
+        table -> current = table;
+        result_of_fscanf = fscanf(fp, "[record]\n%s => %s\n", command, program_full_path);
+        table -> next = (struct _ConversionRelations *)calloc(sizeof(struct _ConversionRelations), 1);
+        table -> next -> first = table -> current -> first;
+        if(2 != result_of_fscanf)
+        {
+            table = temp;
+            free(table -> next);
+            table -> next = NULL;
+            break;
+        }
         sprintf(table -> current -> command, "%s", command);
         sprintf(table -> current -> program_full_path, "%s", program_full_path);
-        table -> next = (struct _ConversionRelations *)calloc(sizeof(struct _ConversionRelations), 1);
-        table -> next -> first = table -> first;
+        temp = table;
         table = (ConversionRelations *)table -> next;
 	}
     return table;
+}
+/*
+    SaveDNGConversionRelationsMemoryToFile : Save the data to .dngcommand
+    Return value
+    void
+*/
+void
+SaveDNGConversionRelationsMemoryToFile(const char *name, ConversionRelations *table)
+{
+    ConversionRelations *temp = NULL;
+    FILE *dng_command_file = NULL;
+    dng_command_file = fopen(name, "w+");
+    temp = table -> first;
+	while(NULL != temp)
+    {
+        fprintf(dng_command_file, "[record]\n%s => %s\n", temp -> current -> command, temp -> current -> program_full_path);
+        temp = temp -> next;
+    }
+    fflush(dng_command_file);
+    fclose(dng_command_file);
+    dng_command_file = NULL;
+    return ;
+}
+/*
+    UpdateDNGConversionRelations : Update the DNG record in memory
+    Return value
+    void
+*/
+void
+UpdateDNGConversionRelations(ConversionRelations *table, const char *command,const char *program_full_path)
+{
+    ConversionRelations *dest = NULL;
+    if(NULL == (dest = SearchDNGConversionRelations(table, command)))
+    {
+        return ;
+    }
+    sprintf(dest -> current -> command, "%s", command);
+    sprintf(dest -> current -> program_full_path, "%s", program_full_path);
+    return ;
 }
 /*  FreeConversionRelationsMemory : Free the resource it used 
     Return value
@@ -120,7 +177,7 @@ FreeConversionRelationsMemory(ConversionRelations *table)
 {
     ConversionRelations *temp = NULL, *temp1 = NULL;
     temp = table -> first;
-	while(NULL != temp)
+    while(NULL != temp -> next)
     {
         temp1 = temp -> current -> next;
         free(temp -> current);
@@ -141,7 +198,6 @@ DNGCommandParse(ConversionRelations *table, const char *command, const char *arg
 {
     ConversionRelations *rule = NULL;
     char final_command[1024] = {0};
-    /* Search the matched rule */
     rule = SearchDNGConversionRelations(table, command);
     if(NULL == rule)
     {
@@ -153,7 +209,6 @@ DNGCommandParse(ConversionRelations *table, const char *command, const char *arg
 }
 /*
 	LoadDNGCommandFile : Load the .dngcommand file to program
-	Load in readonly mode
 	Return value
 	A point to the file => success
 	NULL => fail
@@ -175,7 +230,65 @@ CloseDNGCommandFile(FILE *fp)
     fp = NULL;
 }
 /*
+    AddCommandRelation : Add a record to table
+    Return value
+    0 => success
+    -1 => failure
+*/
+int
+AddCommandRelation(ConversionRelations *table, const char *command, const char *program_full_path)
+{
+    ConversionRelations *temp = NULL;
+    if(NULL != SearchDNGConversionRelations(table, command))
+    {
+        return -1;/* Already exist */
+    }
+    if(NULL == (temp = (ConversionRelations*)calloc(sizeof(ConversionRelations),1)))
+    {
+        return -1;
+    }
+    table -> next = temp;
+    sprintf(temp -> command, "%s", command);
+    sprintf(temp -> program_full_path, "%s", program_full_path);
+    temp -> first = table -> first;
+    temp -> current = temp;
+    table = temp;
+    return 0;
+}
+/*
+    RemoveCommandRelation : Remove a parse rule
+    Return value
+    0 => success
+    -1 => failure
+*/
+int 
+RemoveCommandRelation(ConversionRelations *table,const char *command)
+{
+    ConversionRelations *dest = NULL, *temp = NULL, *temp1 = NULL;
+    if(NULL == (dest = SearchDNGConversionRelations(table, command)))
+    {
+        return -1;
+    }
+    temp = table -> first;
+    while((NULL != temp -> next) && temp -> next != dest)
+    {
+        temp = temp -> next;
+    }
+    temp1 = dest -> next;
+    temp -> next = temp1;
+    free(dest);
+    dest = NULL;
+    return 0;
+}
+/*
     main : The main part of the program
+    Built-in command
+    parse-add command program
+        Add a record to file
+    parse-remove command program
+        Remove a record
+    parse-update command program
+        Change a record
 */
 /*
 	How does the DNG command parse works:
@@ -189,7 +302,6 @@ main(int argc, char **argv)
 {
     FILE *dng_command_file = NULL;
 	ConversionRelations *table = NULL;
-    bool flag_of_match = false;
     char arguments[1024] = {0};
     if(0 != InitWorkEnviroment())
     {
@@ -203,7 +315,7 @@ main(int argc, char **argv)
         return 0;
     }
     /* Load the .dngcommand file */
-    if(NULL == (dng_command_file = LoadDNGCommandFile(".dngcommand")))
+    if(NULL == (dng_command_file = LoadDNGCommandFile(DNG_COMMAND_FILE_NAME)))
     {
         puts("Error : Can't load the dng command file");
         exit(-1);
@@ -214,14 +326,37 @@ main(int argc, char **argv)
         puts("Error : Can't analyse the file content");
         exit(-1);
     }
-	/* Free the file resource */
-    CloseDNGCommandFile(dng_command_file);
     /* Parse the command */
-    CombineMainFunctionArguments(arguments, argc, argv, 3);
-    if(0 == DNGCommandParse(table, argv[1], arguments))
+    /* For built-in command */
+    if(0 == strcmp(argv[1], "parse-add"))
     {
-        printf("Sorry, can't match the command.\n");
-        printf("Try 'dng --help' for more information.\n");
+        AddCommandRelation(table, argv[2], argv[3]);
+        CloseDNGCommandFile(dng_command_file);
+        SaveDNGConversionRelationsMemoryToFile(DNG_COMMAND_FILE_NAME, table);
+    }
+    else if(0 == strcmp(argv[1], "parse-remove"))
+    {
+        RemoveCommandRelation(table, argv[2]);
+        CloseDNGCommandFile(dng_command_file);
+        SaveDNGConversionRelationsMemoryToFile(DNG_COMMAND_FILE_NAME, table);
+    }
+    else if(0 == strcmp(argv[1], "parse-update"))
+    {
+        /* Equal to parse-add with parse-remove */
+        RemoveCommandRelation(table, argv[2]);
+        AddCommandRelation(table, argv[2], argv[3]);
+        CloseDNGCommandFile(dng_command_file);
+        SaveDNGConversionRelationsMemoryToFile(DNG_COMMAND_FILE_NAME, table);
+    }
+    /* Not the built-in command */
+    else
+    {
+        CombineMainFunctionArguments(arguments, argc, argv, 3);
+        if(0 == DNGCommandParse(table, argv[1], arguments))
+        {
+            printf("Sorry, can't match the command.\n");
+            printf("Try 'dng --help' for more information.\n");
+        }
     }
     /* Free the memory resource */
     FreeConversionRelationsMemory(table);
