@@ -9,14 +9,14 @@
  *      Portions Copyright (c) Public Domain
  *------------------------------------------------------------------------------------*/
 #include "../library/dng.h"
-#include <unistd.h> /* For chdir */
+#include <unistd.h>
 #include <string.h>
 #include <stdio.h>
 /*
-    To set the right work directory
+    InitWorkEnviroment : Set the right work directory
     Return Value
-    0 success
-    -1 failure
+    0 => csuccess
+    -1 => failure
 */
 int
 InitWorkEnviroment(void)
@@ -33,17 +33,7 @@ InitWorkEnviroment(void)
     return 0;
 }
 /*
-    Copy file
-*/
-int 
-CopyBinaryFile(const char *dest, const char *source)
-{
-    char command[MAX_BUFFER] = {0};
-
-    return 0;
-}
-/*
-    Change program work directory
+    ChangeWorkDirectory : Change program work directory
 */
 int 
 ChangeWorkDirectory(const char *path)
@@ -51,27 +41,29 @@ ChangeWorkDirectory(const char *path)
     return chdir(path);
 }
 /*
-    Get the last character position from string
- */
+    GetLastCharacterPosition : Get the last character position from string
+    Return value
+    the position of the character
+*/
 int
 GetLastCharacterPosition(const char *str, char c)
 {
     int position = 0;
     position = strlen(str);
-    
     while((*(str + position) != c) && (position > 0))
-        position--;
-    
+    {    
+        position--;    
+    }
     return position;
 }
 /*
-    Get the path of program.
+    GetProgramSelfFullPath : Get the path of program with program name
     Return value
-    0 success
-    -1 failure
+    0 => success
+    -1 => failure
 */
 int 
-GetProgramSelfFullPath(char *path,int size)
+GetProgramSelfFullPath(char *path, int size)
 {
     if(-1 ==  readlink("/proc/self/exe",path,size))
     {
@@ -80,26 +72,25 @@ GetProgramSelfFullPath(char *path,int size)
     return 0;
 }
 /*
-    Get the last character position from string
+    GetProgramSelfPath : the last character position from string
     Return Value
     0 success
     -1 failure
 */
 int 
-GetProgramSelfPath(char *dest,int size)
+GetProgramSelfPath(char *dest, int size)
 {
     int position = 0;
     int length = 0;
-    
-    if(-1 ==  readlink("/proc/self/exe",dest,size))
+    if(-1 ==  readlink("/proc/self/exe", dest, size))
+    {    
         return -1;
-    
+    }
     length = strlen(dest);
     position = GetLastCharacterPosition(dest, '/');
     for(int i = length > size ? size : length;i > position;i--)
+    {
         *(dest + position) = '\0';
+    }
     return 0;
 }
-/*
-    Just to test the code, it must be deleted.
-*/

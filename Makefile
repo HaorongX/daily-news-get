@@ -17,7 +17,7 @@ dev:
 	sudo rm -f  $(SRCPATH)/$(PROJECT_NAME).out
 
 	#Compile C Program
-	gcc $(SRCPATH)/$(PROJECT_NAME).c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME).out
+	gcc $(SRCPATH)/$(PROJECT_NAME).c $(SRCPATH)/$(INCLUDE_ACHIEVE)/*.c -o $(SRCPATH)/$(PROJECT_NAME).out -g
 	
 	#Clean up old install shell file
 	sudo rm -f $(INSTALL_PATH)/$(PROJECT_NAME).sh

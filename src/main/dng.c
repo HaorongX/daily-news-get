@@ -14,7 +14,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "library/dng.h"
-#define DNG_COMMAND_FILE_NAME "test.txt"
+#define DNG_COMMAND_FILE_NAME "dngcommand.record"
 typedef struct _ConversionRelations
 {
 	char command[16];
@@ -117,9 +117,12 @@ ConventDNGCommandFileContentToMemory(FILE *fp)
         table -> next -> first = table -> current -> first;
         if(2 != result_of_fscanf)
         {
-            table = temp;
-            free(table -> next);
-            table -> next = NULL;
+			if(NULL != temp)/* Avoid empty file */
+			{
+				table = temp;
+				free(table -> next);
+			}
+			table -> next = NULL;
             break;
         }
         sprintf(table -> current -> command, "%s", command);
