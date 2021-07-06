@@ -155,6 +155,10 @@ FreeConversionRelationsMemory(ConversionRelations *table)
 {
     ConversionRelations *temp = NULL, *temp1 = NULL;
     temp = table -> first;
+	if(NULL == temp)
+	{
+		return ;
+	}
     while(NULL != temp -> next)
     {
         temp1 = temp -> current -> next;
@@ -375,6 +379,21 @@ main(int argc, char **argv)
         CloseDNGCommandFile(dng_command_file);
         SaveDNGConversionRelationsMemoryToFile(DNG_COMMAND_FILE_NAME, table);
     }
+    else if(0 == strcmp(argv[1], "parse-execute"))
+	{
+		ConversionRelations *result = NULL;
+		result = SearchDNGConversionRelationsCommand(table, argv[2]);
+		if(NULL == result)
+		{
+			
+		}
+		else
+		{
+			char command[1024] = {0};
+			sprintf(command, "\tools\%s", result -> program_full_path);
+			system(command);
+		}
+	}
     /* Not the built-in command */
     else
     {
