@@ -61,13 +61,13 @@ CombineMainFunctionArguments(char *dest, int main_argc, char **main_argv, int na
     return ;
 }
 /*
-    SearchDNGConversionRelations : Search the match rule
+    SearchDNGConversionRelationsCommand : Search the match rule of command
     Return value
     a point to rule => success
     NULL => failure
 */
 ConversionRelations *
-SearchDNGConversionRelations(ConversionRelations *table, const char *command)
+SearchDNGConversionRelationsCommand(ConversionRelations *table, const char *command)
 {
     ConversionRelations *temp = NULL;
     bool flag_of_match = false;
@@ -75,6 +75,33 @@ SearchDNGConversionRelations(ConversionRelations *table, const char *command)
 	while(NULL != temp)
     {
         if(0 == strcmp(temp -> command, command))
+        {
+            flag_of_match = true;
+            break;
+        }
+        temp = temp -> current -> next;
+    }
+    if(flag_of_match)
+    {    
+        return temp;
+    }
+    return NULL;
+}
+/*
+    SearchDNGConversionRelationsProgram : Search the match rule of command
+    Return value
+    a point to rule => success
+    NULL => failure
+*/
+ConversionRelations *
+SearchDNGConversionRelationsProgram(ConversionRelations *table, const char *program_full_path)
+{
+    ConversionRelations *temp = NULL;
+    bool flag_of_match = false;
+    temp = table -> first;
+	while(NULL != temp)
+    {
+        if(0 == strcmp(temp -> program_full_path, program_full_path))
         {
             flag_of_match = true;
             break;
@@ -117,13 +144,6 @@ SaveDNGConversionRelationsMemoryToFile(const char *name, ConversionRelations *ta
 void
 UpdateDNGConversionRelations(ConversionRelations *table, const char *command,const char *program_full_path)
 {
-    ConversionRelations *dest = NULL;
-    if(NULL == (dest = SearchDNGConversionRelations(table, command)))
-    {
-        return ;
-    }
-    sprintf(dest -> current -> command, "%s", command);
-    sprintf(dest -> current -> program_full_path, "%s", program_full_path);
     return ;
 }
 /*  FreeConversionRelationsMemory : Free the resource it used 
@@ -156,7 +176,7 @@ DNGCommandParse(ConversionRelations *table, const char *command, const char *arg
 {
     ConversionRelations *rule = NULL;
     char final_command[1024] = {0};
-    rule = SearchDNGConversionRelations(table, command);
+    rule = SearchDNGConversionRelationsCommand(table, command);
     if(NULL == rule)
     {
         return 0;
@@ -197,7 +217,7 @@ int
 AddCommandRelation(ConversionRelations *table, char *command, char *program_full_path)
 {
     ConversionRelations *temp = NULL;
-    if(NULL != SearchDNGConversionRelations(table, command))
+    if((NULL != SearchDNGConversionRelationsCommand(table, command)) || (NULL != SearchDNGConversionRelationsProgram(table, program_full_path)))
     {
         return -1;/* Already exist */
     }
@@ -221,8 +241,16 @@ AddCommandRelation(ConversionRelations *table, char *command, char *program_full
 	else
 	{
 		temp -> first = table -> first;
-		table -> next = temp;
-		table = temp;
+		if(NULL == table -> next)
+		{
+			table -> next = temp;
+			table = temp;
+		}
+		else
+		{
+			table = table -> next;
+			table -> next = temp;
+		}
 	}
 	return 0;
 }
@@ -264,7 +292,7 @@ int
 RemoveCommandRelation(ConversionRelations *table,const char *command)
 {
     ConversionRelations *dest = NULL, *temp = NULL, *temp1 = NULL;
-    if(NULL == (dest = SearchDNGConversionRelations(table, command)))
+    if(NULL == (dest = SearchDNGConversionRelationsCommand(table, command)))
     {
         return -1;
     }
