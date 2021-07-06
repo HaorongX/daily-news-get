@@ -194,7 +194,7 @@ CloseDNGCommandFile(FILE *fp)
     -1 => failure
 */
 int
-AddCommandRelation(ConversionRelations *table, const char *command, const char *program_full_path)
+AddCommandRelation(ConversionRelations *table, char *command, char *program_full_path)
 {
     ConversionRelations *temp = NULL;
     if(NULL != SearchDNGConversionRelations(table, command))
@@ -205,24 +205,23 @@ AddCommandRelation(ConversionRelations *table, const char *command, const char *
     {
         return -1;
     }
+	temp -> current = temp;
+    sprintf(temp -> command, "%s", command);
+	sprintf(temp -> program_full_path, "%s", program_full_path);
     if(NULL == table -> first)
 	{
 		if(NULL == (table -> first = (ConversionRelations*)calloc(sizeof(ConversionRelations),1)))
 		{
 			return -1;
 		}
-		table -> first = table;
+		temp -> first = table;
+		memcpy(table, temp, sizeof(ConversionRelations));
 		table -> current = table;
-		sprintf(temp -> command, "%s", command);
-		sprintf(temp -> program_full_path, "%s", program_full_path);
 	}
 	else
 	{
-		table -> next = temp;
-		sprintf(temp -> command, "%s", command);
-		sprintf(temp -> program_full_path, "%s", program_full_path);
 		temp -> first = table -> first;
-		temp -> current = temp;
+		table -> next = temp;
 		table = temp;
 	}
 	return 0;
