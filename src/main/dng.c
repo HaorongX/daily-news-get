@@ -88,51 +88,6 @@ SearchDNGConversionRelations(ConversionRelations *table, const char *command)
     return NULL;
 }
 /*
-    ConventDNGCommandFileContentToMemory : Load the content to memory
-    Return value
-    a point to date table => success
-    NULL => failure
-*/
-ConversionRelations *
-ConventDNGCommandFileContentToMemory(FILE *fp)
-{
-    ConversionRelations *table = NULL, *temp = NULL;
-    char command[16] = {0};
-	char program_full_path[512] = {0};
-    int result_of_fscanf = 0;
-    /* From file content to table */
-    if(NULL == (table = (ConversionRelations *)calloc(sizeof(struct _ConversionRelations), 1)))
-	{
-		return NULL;
-	}
-	while(true)/* Avoid empty file */
-	{
-        if(NULL == table -> first)
-        {
-            table -> first = table;
-        }
-        table -> current = table;
-        result_of_fscanf = fscanf(fp, "[record]\n%s => %s\n", command, program_full_path);
-        table -> next = (struct _ConversionRelations *)calloc(sizeof(struct _ConversionRelations), 1);
-        table -> next -> first = table -> current -> first;
-        if(2 != result_of_fscanf)
-        {
-			if(NULL != temp)/* Avoid empty file */
-			{
-				table = temp;
-				free(table -> next);
-			}
-			table -> next = NULL;
-            break;
-        }
-        sprintf(table -> current -> command, "%s", command);
-        sprintf(table -> current -> program_full_path, "%s", program_full_path);
-        temp = table;
-        table = (ConversionRelations *)table -> next;
-	}
-    return table;
-}
-/*
     SaveDNGConversionRelationsMemoryToFile : Save the data to .dngcommand
     Return value
     void
@@ -250,13 +205,55 @@ AddCommandRelation(ConversionRelations *table, const char *command, const char *
     {
         return -1;
     }
-    table -> next = temp;
-    sprintf(temp -> command, "%s", command);
-    sprintf(temp -> program_full_path, "%s", program_full_path);
-    temp -> first = table -> first;
-    temp -> current = temp;
-    table = temp;
-    return 0;
+    if(NULL == table -> first)
+	{
+		if(NULL == (table -> first = (ConversionRelations*)calloc(sizeof(ConversionRelations),1)))
+		{
+			return -1;
+		}
+		table -> first = table;
+		table -> current = table;
+		sprintf(temp -> command, "%s", command);
+		sprintf(temp -> program_full_path, "%s", program_full_path);
+	}
+	else
+	{
+		table -> next = temp;
+		sprintf(temp -> command, "%s", command);
+		sprintf(temp -> program_full_path, "%s", program_full_path);
+		temp -> first = table -> first;
+		temp -> current = temp;
+		table = temp;
+	}
+	return 0;
+}
+/*
+ *   ConventDNGCommandFileContentToMemory : Load the content to memory
+ *   Return value
+ *   a point to date table => success
+ *   NULL => failure
+ */
+ConversionRelations *
+ConventDNGCommandFileContentToMemory(FILE *fp)
+{
+	ConversionRelations *table = NULL, *temp = NULL;
+	char command[16] = {0};
+	char program_full_path[512] = {0};
+	int result_of_fscanf = 0;
+	if(NULL == (table = (ConversionRelations*)calloc(sizeof(ConversionRelations), 1)))
+	{
+		return NULL;
+	}
+	while(true)
+	{
+		/* 2 means the normal condition, the program read the right data successly */
+		if(2 != (result_of_fscanf = fscanf(fp, "[record]\n%s => %s\n", command, program_full_path)))
+		{
+			break;
+		}
+		AddCommandRelation(table, command, program_full_path);
+	}
+	return table;
 }
 /*
     RemoveCommandRelation : Remove a parse rule
