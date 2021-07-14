@@ -28,7 +28,7 @@ def get_news(news_url):
     return {"title":news_title_html,"news":news_html}
 
 def delete_html_tag(string):
-    ex = "<(\S*?)*[^>]*>.*?|<.*? />"
+    ex = "<(\\S*?)*[^>]*>.*?|<.*? />"
     return re.sub(ex,"",string)
 
 # 将新闻写入文件

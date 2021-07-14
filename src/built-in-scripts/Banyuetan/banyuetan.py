@@ -42,7 +42,7 @@ def get_news(news_url):
 
 # 该函数用于删除字符串中的所有html标签
 def delete_html_tag(string):
-    ex = "<(\S*?)*[^>]*>.*?|<.*? />" # 用于选中HTML标签的正则
+    ex = "<(\\S*?)*[^>]*>.*?|<.*? />" # 用于选中HTML标签的正则
     return re.sub(ex,"",string) # 将string中被表达式ex选中的元素替换为空
 
 # 将新闻写入文件
