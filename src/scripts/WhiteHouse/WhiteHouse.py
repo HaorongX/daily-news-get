@@ -3,12 +3,12 @@
 import requests
 import lxml
 from bs4 import BeautifulSoup
-import os
 import  re
 import time
+from string_process import remove_empty
 
-def get_news_list(base_url):
-    news_list_page = requests.get(news_list_url)
+def get_news_list(base_url,header):
+    news_list_page = requests.get(base_url,headers = header)
     news_list_page.encoding = "utf-8"
     news_list_page_html = BeautifulSoup(news_list_page.text,'lxml')
     news_list = str(news_list_page_html.find_all('a', class_='news-item__title acctext--con'))
@@ -24,7 +24,8 @@ def get_news(news_url):
     news.encoding = "utf-8"
     news_page_details = BeautifulSoup(news.text,'lxml')
     news_title_html = str(news_page_details.find_all('h1'))
-    news_html = str(news_page_details.find_all('div', class_='container'))
+    news_title_html = remove_empty(news_title_html)
+    news_html = str(news_page_details.find_all('div', class_='row'))
     return {"title":news_title_html,"news":news_html}
 
 def delete_html_tag(string):
@@ -42,7 +43,11 @@ def write_into_file(file_name,title,article):
 # ----------以下为主程序----------
 
 news_list_url = "https://www.whitehouse.gov/"
-news_url = get_news_list(news_list_url)
+
+requests_header = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
+(KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36"}
+
+news_url = get_news_list(base_url = news_list_url , header = requests_header)
 
 for i in news_url:
     news = get_news(i)
