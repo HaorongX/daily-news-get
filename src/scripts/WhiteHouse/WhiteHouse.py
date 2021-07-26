@@ -26,6 +26,7 @@ def get_news(news_url):
     news_title_html = str(news_page_details.find_all('h1'))
     news_title_html = remove_empty(news_title_html)
     news_html = str(news_page_details.find_all('div', class_='row'))
+    news_html = remove_empty(news_html)
     return {"title":news_title_html,"news":news_html}
 
 def delete_html_tag(string):

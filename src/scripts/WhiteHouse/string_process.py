@@ -21,9 +21,12 @@ def remove_empty(str):
     start = 0
     end = len(ret)-1
     
-    if exist(empty_char,ret[start]):
+    while exist(empty_char,ret[start]):
         start += 1
-    if exist(empty_char,ret[end]):
+    while exist(empty_char,ret[end]):
         end -= 1
 
-    return ret[start:end]
+    return ret[start:end+1]
+
+a = input()
+print("#"+remove_empty(a)+"#")
