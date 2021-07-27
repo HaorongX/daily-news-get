@@ -1,0 +1,32 @@
+# introduction.note
+  > 本文件为说明DNG命令解析器而制作
+  > 遵循note文件格式规范
+# DNG Command Parse
+  > usage
+    >> dng install install.note
+       安装拓展
+       >>> install.note 是拓展程序目录下的文件
+       >>> 所有的拓展程序由如下部分组成
+           install.note
+           格式如下:
+           # full_name
+             @ name
+             @ author
+             @ describle
+             @ connect_program
+               > connect_program是程序与dng主程序进行通信的程序
+           result(directory)
+           本文件夹储存所有的输出文章,包含:
+           collect.note
+           > 最终整合生成的文件
+           其余文件为可选项
+    >> dng remove name
+       移除拓展
+    >> dng list
+       列举所有的拓展
+    >> dng execute name
+       执行一个拓展
+    >> dng version
+       查看dng程序版本
+    >> dng help
+       获取帮助
