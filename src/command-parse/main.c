@@ -224,6 +224,26 @@ InitEnviroment(void)
   return 0;
 }
 /*
+    help_version
+
+    Describle:
+      Print the version information
+
+    Arguments:
+      arguments:
+        the main function arguments
+      extern_info:
+        Extern Infomation
+
+    Return value:
+      No value
+*/
+void
+version(PCommandArguments arguments, void *extern_info)
+{
+  puts("Version 0.0.4 Beta");
+}
+/*
     help
 
     Describle:
@@ -241,7 +261,7 @@ InitEnviroment(void)
 void
 help(PCommandArguments arguments, void *extern_info)
 {
-  puts("dng bersion 0.0.4 Beta");
+  puts("dng version 0.0.4 Beta");
   puts("Usage: dng [OPTION]");
   puts("--version                 Display compiler version information");
   puts("-v                        Equal to '--version'");
@@ -252,7 +272,7 @@ help(PCommandArguments arguments, void *extern_info)
   puts("uninstall [name]          Equal to 'remove'");
   puts("execute [name]            Execute a program");
   puts("gather [name]             Equal to 'execute'");
-  puys("list                      List all the program installed");
+  puts("list                      List all the program installed");
 }
 /*
     main
@@ -292,7 +312,12 @@ main(int argc, char **argv)
       return -1;
     }
   rules = CreateCommandRule(NULL);
+  AddCommandRule(rules, help, "-h");
+  AddCommandRule(rules, version, "-v");
   AddCommandRule(rules, help, "--help");
+  AddCommandRule(rules, version, "version");
+  AddCommandRule(rules, help, "help");
+  AddCommandRule(rules, version, "--version");
   CallFunctionByCommand(rules, argv[1], main_command);
   return 0;
 }
