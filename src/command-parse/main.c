@@ -255,7 +255,7 @@ help(PCommandArguments arguments, void *extern_info)
   puys("list                      List all the program installed");
 }
 /*
-    Main
+    main
 
     Describle:
       This Function Is The Main Part Of the program
