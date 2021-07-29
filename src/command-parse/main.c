@@ -156,6 +156,6 @@ main(int argc, char **argv)
     {
       PrintErrorMessage(CV_FAILURE, "Command not found", __LINE__);
     }
-  //CleanFunctionRule(rules);
+  CleanFunctionRule(rules);
   return 0;
 }
