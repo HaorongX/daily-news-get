@@ -151,11 +151,11 @@ main(int argc, char **argv)
       return -1;
     }
   PrepareRules(rules);
-  status_value = CallFunction(rules, argv[2], (void*)argv, (void*)&argc);
+  status_value = CallFunction(rules, argv[1], (void*)argv, (void*)&argc);
   if(CV_FAILURE == status_value)
     {
       PrintErrorMessage(CV_FAILURE, "Command not found", __LINE__);
     }
-  CleanFunctionRule(rules);
+  //CleanFunctionRule(rules);
   return 0;
 }
