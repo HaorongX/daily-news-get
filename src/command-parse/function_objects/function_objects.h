@@ -1,3 +1,5 @@
+#ifndef DNG_FUNCTION_OBJECTS_H
+#define DNG_FUNCTION_OBJECTS_H
 /*********************************************************
  *  DNG Project
  *    Daily News Gather
@@ -36,3 +38,4 @@ PFunctionRules CreateFunctionRules(void);
 CodeValue AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, void *extern_information), char *command);
 CodeValue CallFunction(PFunctionRules rules, char *command, void *arguments, void *extern_information);
 CodeValue CleanFunctionRule(PFunctionRules rules);
+#endif
