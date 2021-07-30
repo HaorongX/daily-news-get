@@ -71,15 +71,52 @@ InitEnviroment(void)
       No value
 
     Notice:
-      If DNG_RELEASE defined,the third argument will be ignored.
+      If DNG_DEBUG undefined,the third argument will be ignored.
 */
 void
 PrintErrorMessage(int error_code, char *message, int line)
 {
   printf("DNG Error:%s\nError code:%3d\n", message, error_code);
-  #ifdef DNG_RELEASE
+  #ifdef DNG_DEBUG
   printf("Code line:%d\n", line);
   #endif
+}
+/*
+    PrintErrorMessageByCode
+
+    Describle:
+      Print the error message by error code
+
+    Arguments:
+      code
+        The error code
+      line:
+        The line of code
+        Should be __LINE__
+
+    Return value:
+      No value
+
+    Notice:
+      If DNG_DEBUG undefined,the third argument will be ignored.
+*/
+void
+PrintErrorMessageByCode(int error_code, int line)
+{
+  switch(error_code)
+    {
+    case CV_FAILURE:
+      PrintErrorMessage(error_code, "Command not found", line);
+      break;
+    case CV_USER_LACK_ARGUMENTS:
+      PrintErrorMessage(error_code, "Need more arguments", line);
+      break;
+    case CV_USER_FILE_FAILURE:
+      PrintErrorMessage(error_code, "Create file failed", line);
+      break;
+    default:
+      break;
+    }
 }
 /*
     PrepareRules
@@ -113,6 +150,7 @@ PrepareRules(PFunctionRules rules)
   AddFunctionRule(rules, Command_execute, "gather");
   AddFunctionRule(rules, Command_clean, "clean");
   AddFunctionRule(rules, Command_check, "check");
+  AddFunctionRule(rules, Command_note_maker, "note-maker");
 }
 
 /*
@@ -152,10 +190,7 @@ main(int argc, char **argv)
     }
   PrepareRules(rules);
   status_value = CallFunction(rules, argv[1], (void*)argv, (void*)&argc);
-  if(CV_FAILURE == status_value)
-    {
-      PrintErrorMessage(CV_FAILURE, "Command not found", __LINE__);
-    }
+  PrintErrorMessageByCode(status_value, __LINE__);
   CleanFunctionRule(rules);
   return 0;
 }

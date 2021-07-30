@@ -28,6 +28,9 @@
 CodeValue
 Command_install(void *arguments, void *extern_information)
 {
-
+  if(*(int*)extern_information <= 2)
+    {
+      return CV_USER_LACK_ARGUMENTS;
+    }
   return CV_SUCCESS;
 }
