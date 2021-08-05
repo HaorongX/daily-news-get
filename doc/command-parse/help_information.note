@@ -1,12 +1,4 @@
 # DNG help file
-  > 对DNG程序help指令的说明:
-  @ DNG help指令应当依据如下形式调用:
-    dng help [name]
-    其中:
-    当[name]不被提供时:
-    dng help
-    DNG程序将会直接提供内建的帮助信息:
-
     DNG -- Daily News Gather
 
     usage: dng command

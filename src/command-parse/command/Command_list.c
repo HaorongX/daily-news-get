@@ -9,6 +9,8 @@
 *
 *************************************************/
 #include "command.h"
+#include <stdio.h>
+#include <dirent.h>
 /*
     Command_list
 
@@ -24,10 +26,35 @@
     Return value:
       CV_SUCCESS
         Success
+      CV_FAILURE
+        Failure
+
+    Notice:
+      We assumed the InitEnviroment has called
 */
 CodeValue
 Command_list(void *arguments, void *extern_information)
 {
+  DIR *directory = NULL;
+  char *parent_directory = "./installed";
+  struct dirent *file = NULL;
+  /* '.' means the current directory  */
+  directory = opendir(parent_directory);
+  if(!directory)
+    {
+      return CV_FAILURE;
+    }
+  while(1)
+    {
+      file = readdir(directory);
+      if(NULL == file)
+        {
+          break;
+        }
+      if(DT_DIR == file -> d_type)
+        {
 
+        }
+    }
   return CV_SUCCESS;
 }

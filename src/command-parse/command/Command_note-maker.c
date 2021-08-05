@@ -10,7 +10,35 @@
 *************************************************/
 #include "command.h"
 #include <stdio.h>
-#define DNG_NOTE_MAKER_VERSION "0.0.1"
+#define DNG_NOTE_MAKER_VERSION "0.0.2"
+/*
+    DeleteCharacter
+
+    Describle:
+      Delete a character from a string
+
+    Arguments:
+      string
+        The source string
+      character
+        The character
+
+     Return value:
+       No value
+*/
+void
+DeleteCharacter(char *string, char character)
+{
+  int i = 0;
+  while('\0' != *(string + i))
+    {
+      if(*(string + i) == character)
+        {
+          *(string + i) = '\0';
+        }
+      i++;
+    }
+}
 /*
     Command_note_maker
 
@@ -45,26 +73,30 @@ Command_note_maker(void *arguments, void *extern_information)
   printf("Plesase input your project name\n");
   printf("For example: my-gather\n");
   printf("Your project name:");
-  scanf("%s", input_name);
+  fgets(input_name, 255, stdin);
   printf("Step 2:");
   printf("Plesase input your project author\n");
   printf("For example: pie\n");
   printf("Your name:");
-  scanf("%s", input_author);
+  fgets(input_author, 255, stdin);
   printf("Step 3:");
   printf("Plesase input your project version\n");
   printf("For example: 0.0.1\n");
   printf("Your version:");
-  scanf("%s", input_version);
+  fgets(input_version, 255, stdin);
   printf("Step 4:");
   printf("Plesase input your connect program\n");
   printf("For example: connect.out\n");
   printf("Your connect program:");
-  scanf("%s", input_connect_program);
+  fgets(input_connect_program, 255, stdin);
   if(NULL == (install_note = fopen("install.note", "w")))
     {
       return CV_USER_FILE_FAILURE;
     }
+  DeleteCharacter(input_name, '\n');
+  DeleteCharacter(input_author, '\n');
+  DeleteCharacter(input_version, '\n');
+  DeleteCharacter(input_connect_program, '\n');
   fprintf(install_note, "# %s\n", input_name);
   fprintf(install_note, "  @ Author\n");
   fprintf(install_note, "    %% %s\n", input_author);

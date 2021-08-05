@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include "function_objects/function_objects.h"
 #include "command/command.h"
+#include "note_reader/note_reader.h"
 /*
     InitEnviroment
 
