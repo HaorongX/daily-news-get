@@ -21,4 +21,5 @@ typedef struct _NoteRecord
 }NoteRecord, *PNoteRecord;
 void DeleteCharacterFromStringFromString(char *string, char character);
 PNoteRecord LoadNoteFile(char *filename);
+void FreeNoteFile(PNoteRecord file);
 #endif

@@ -9,7 +9,9 @@
 *
 *************************************************/
 #include "command.h"
+#include "../note_reader/note_reader.h"
 #include <stdio.h>
+#include <string.h>
 #include <dirent.h>
 /*
     Command_list
@@ -38,12 +40,18 @@ Command_list(void *arguments, void *extern_information)
   DIR *directory = NULL;
   char *parent_directory = "./installed";
   struct dirent *file = NULL;
+  int count = 0;
   /* '.' means the current directory  */
   directory = opendir(parent_directory);
   if(!directory)
     {
       return CV_FAILURE;
     }
+  puts("================================================");
+  puts("");
+  puts(" Package             Author              Version");
+  puts("");
+  puts("================================================");
   while(1)
     {
       file = readdir(directory);
@@ -53,8 +61,29 @@ Command_list(void *arguments, void *extern_information)
         }
       if(DT_DIR == file -> d_type)
         {
-
+          PNoteRecord notefile = NULL;
+          char filename[512] = {0};
+          if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
+            {
+              continue;
+            }
+          sprintf(filename, "./installed/%s/install.note", file -> d_name);
+          notefile = LoadNoteFile(filename);
+          if(NULL == notefile)
+            {
+              break;
+            }
+          if(0 == count)
+            {
+              puts("Installing:");
+            }
+          printf("%s             %s             %s\n", notefile -> name, notefile -> author, notefile -> version);
+          FreeNoteFile(notefile);
+          count++;
         }
     }
+  puts("================================================");
+  printf("Install %3d Package", count);
+  closedir(directory);
   return CV_SUCCESS;
 }

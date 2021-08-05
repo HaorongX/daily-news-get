@@ -87,3 +87,21 @@ LoadNoteFile(char *filename)
   DeleteCharacterFromStringFromString(result -> connect_program, '\n');
   return result;
 }
+/*
+    FreeNoteFile
+
+    Describle:
+      Free a note file
+
+    Arguments:
+      file
+        A point to the note file
+
+     Return value:
+       No value
+*/
+void FreeNoteFile(PNoteRecord file)
+{
+  free(file);
+  file = NULL;
+}
