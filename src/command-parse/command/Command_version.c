@@ -27,8 +27,6 @@
 CodeValue
 Command_version(void *arguments, void *extern_information)
 {
-  puts("DNG");
-  puts("Daily News Gather");
   puts("0.0.4 Beta");
   return CV_SUCCESS;
 }
