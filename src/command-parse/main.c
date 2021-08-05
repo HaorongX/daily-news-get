@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include "function_objects/function_objects.h"
 #include "command/command.h"
@@ -178,6 +179,7 @@ main(int argc, char **argv)
   PFunctionRules rules = NULL;
   CodeValue status_value = 0;
   InitEnviroment();
+  mkdir("installed", S_IRWXU);
   if(argc <= 1)
     {
       puts("dng: missing command");
