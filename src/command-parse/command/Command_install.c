@@ -98,7 +98,6 @@ Command_install(void *arguments, void *extern_information)
   GetPackagePath(package_directory, main_argv[2]);
   GetDngPath(dng_directory);
   sprintf(temp, "cp -r %s %s/installed/", package_directory, dng_directory);
-   puts(temp);
   system(temp);
   return CV_SUCCESS;
 }

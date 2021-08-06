@@ -71,6 +71,7 @@ Command_list(void *arguments, void *extern_information)
           notefile = LoadNoteFile(filename);
           if(NULL == notefile)
             {
+              FreeNoteFile(notefile);
               break;
             }
           if(0 == count)
@@ -83,7 +84,7 @@ Command_list(void *arguments, void *extern_information)
         }
     }
   puts("================================================");
-  printf("Install %3d Package", count);
+  printf("Install %3d Package\n", count);
   closedir(directory);
   return CV_SUCCESS;
 }
