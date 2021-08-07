@@ -14,8 +14,6 @@ def get_news_list(base_url,headers):
 
     news_list = str(news_list_page_html.find_all("h3",class_="rundown-segment__title"))
 
-    print(news_list)
-
     news_url=[]
     news_list=news_list.split('"')
     for i in news_list:
