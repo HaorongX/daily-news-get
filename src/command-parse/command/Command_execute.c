@@ -164,6 +164,69 @@ ExecuteAllPackage(void)
   return CV_SUCCESS;
 }
 /*
+    CombineResult
+*/
+//TODO:Achieve
+/*
+    CombineFile
+*/
+//TODO:Achieve
+/*
+    GatherNews
+
+    Describle:
+      Gather the news download
+
+    Arguments:
+      name
+        The dest floder
+
+    Return value:
+      No value
+*/
+void
+GatherNews(char *name)
+{
+  DIR *directory = NULL;
+  char *parent_directory = "./installed";
+  struct dirent *file = NULL;
+  char temp[4096] = {0};
+  directory = opendir(parent_directory);
+  if(!directory)
+  {
+    return ;
+  }
+  while(1)
+    {
+      file = readdir(directory);
+      if(NULL == file)
+        {
+          break;
+        }
+      if(DT_DIR == file -> d_type)
+        {
+          PNoteRecord notefile = NULL;
+          char filename[512] = {0};
+          sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
+          if(FileExist(temp))
+            {
+              continue;
+            }
+          sprintf(filename, "./installed/%s/install.note", file -> d_name);
+          notefile = LoadNoteFile(filename);
+          if(NULL == notefile)
+            {
+              continue;
+            }
+          if(!strcmp(name, notefile -> name))
+            {
+            }
+          FreeNoteFile(notefile);
+        }
+    }
+    closedir(directory);
+}
+/*
     Command_execute
 
     Describle:
@@ -201,6 +264,13 @@ Command_execute(void *arguments, void *extern_information)
       result = ExecutePackage(main_argv[2], combine_argument);
     }
   /* Second: Gather */
+  if(*(int*)extern_information == 2)
+    {
 
+    }
+  else
+    {
+
+    }
   return result;
 }
