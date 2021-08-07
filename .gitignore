@@ -14,3 +14,8 @@
 
 # metadata(gen by IDE)
 /.metadata/
+
+# pycache
+
+/__pycache__/
+
