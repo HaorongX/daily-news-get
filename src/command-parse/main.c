@@ -179,7 +179,7 @@ main(int argc, char **argv)
   PFunctionRules rules = NULL;
   CodeValue status_value = 0;
   InitEnviroment();
-  mkdir("installed", S_IRWXU);
+  mkdir("./installed", S_IRWXU);
   if(argc <= 1)
     {
       puts("dng: missing command");
