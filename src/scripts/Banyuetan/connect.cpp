@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <string>
-#include<iostream>
 
 using namespace std;
 
@@ -15,7 +14,6 @@ main(int argc, char* argv[])
         command += argv[i];
         command += ' ';
     }
-    cout<<command<<endl;
     system(command.c_str());
     return 0;
 }
