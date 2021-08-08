@@ -35,10 +35,10 @@ FileExist(char *name)
   fp = fopen(name, "r");
   if(NULL == fp)
     {
-      return -1;
+      return 0;
     }
   fclose(fp);
-  return 0;
+  return 1;
 }
 /*
     ExecutePackage
@@ -82,6 +82,10 @@ ExecutePackage(char *name, char *arguments)
           char filename[512] = {0};
           sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
           if(FileExist(temp))
+            {
+              continue;
+            }
+          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
             {
               continue;
             }
@@ -149,6 +153,10 @@ ExecuteAllPackage(void)
             {
               continue;
             }
+          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
+            {
+              continue;
+            }
           sprintf(filename, "./installed/%s/install.note", file -> d_name);
           notefile = LoadNoteFile(filename);
           if(NULL == notefile)
@@ -156,8 +164,6 @@ ExecuteAllPackage(void)
               continue;
             }
           sprintf(temp, "./installed/%s/%s", file -> d_name, notefile -> connect_program);
-                        puts("test");
-              puts(notefile ->connect_program);
           system(temp);
           FreeNoteFile(notefile);
         }
@@ -238,8 +244,8 @@ CombineFile(char *file_1,char *file_2)
   char temp[1024] = {0};
   while(!feof(fp2))
     {
-      fread(temp, sizeof(temp),1,fp2);
-      fwrite(temp, sizeof(temp), 1, fp1);
+      fgets(temp, sizeof(temp), fp2);
+      fprintf(fp1, "%s", temp);
     }
   fclose(fp1);
   fclose(fp2);
@@ -303,6 +309,10 @@ CollectPackage(char *name)
         {
           break;
         }
+      if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
+      {
+        continue;
+      }
       if(DT_REG == file -> d_type)
         {
           if(!strcmp("txt", GetFileSuffixName(file -> d_name)))
@@ -352,6 +362,10 @@ CollectAllPackage(void)
       if(DT_DIR == file -> d_type)
         {
           char content[1024];
+          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
+          {
+            continue;
+          }
           sprintf(content,"<br><h1>%s</h1><br>",file -> d_name);
           AddContentToFile("Complete.html", content);
           CollectPackage(file -> d_name);
@@ -397,6 +411,7 @@ Command_execute(void *arguments, void *extern_information)
       result = ExecutePackage(main_argv[2], combine_argument);
     }
   /* Second: Gather */
+  system("echo >Complete.html");
   if(*(int*)extern_information == 2)
     {
       CollectAllPackage();
@@ -405,5 +420,6 @@ Command_execute(void *arguments, void *extern_information)
     {
       CollectPackage(main_argv[2]);
     }
+  puts("Complete!");
   return result;
 }
