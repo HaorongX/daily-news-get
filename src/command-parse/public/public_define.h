@@ -1,5 +1,16 @@
 #ifndef DNG_PUBLIC_DEFINE
 #define DNG_PUBLIC_DEFINE
 #define DNG_VERSION "1.0.0 Beta"
+#define DNG_INSTALL_DIRECTORY "./installed"
+#define DNG_SELF_INSTALL_DIRECTORY "installed"
+#define DNG_EXTENSION_OUTPUT_EXTENSION "result"
+#define DNG_EXTENSION_HELP_FILE "help.txt"
+#define DNG_EXTENSION_RECORD_FILE "install.note"
+#define DNG_EXTENSION_CLOSE_FILE "remove.lock"
+#define DNG_OUTPUT_FILE "Complete.html"
 #define COMMAND_MAXLENGTH 256
+#define NOTE_MAX_LENGTH 1024
+#define TEMP_BUFFER_LENGTH 2048
+#define FILENAME_MAX_LENGTH 2048
+#define PATH_MAX_LENGTH 1024
 #endif

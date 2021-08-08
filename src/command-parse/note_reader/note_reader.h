@@ -16,10 +16,10 @@
  *****************************************************************/
 typedef struct _NoteRecord
 {
-  char name[512];
-  char author[512];
-  char version[512];
-  char connect_program[512];
+  char name[NOTE_MAX_LENGTH];
+  char author[NOTE_MAX_LENGTH];
+  char version[NOTE_MAX_LENGTH];
+  char connect_program[NOTE_MAX_LENGTH];
 }NoteRecord, *PNoteRecord;
 void WriteNoteFile(char *filename, PNoteRecord info);
 void DeleteCharacterFromStringFromString(char *string, char character);

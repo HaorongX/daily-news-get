@@ -38,7 +38,7 @@ CodeValue
 Command_list(void *arguments, void *extern_information)
 {
   DIR *directory = NULL;
-  char *parent_directory = "./installed";
+  char *parent_directory = DNG_INSTALL_DIRECTORY;
   struct dirent *file = NULL;
   int count = 0;
   /* '.' means the current directory  */
@@ -62,12 +62,12 @@ Command_list(void *arguments, void *extern_information)
       if(DT_DIR == file -> d_type)
         {
           PNoteRecord notefile = NULL;
-          char filename[512] = {0};
+          char filename[FILENAME_MAX_LENGTH] = {0};
           if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
             {
               continue;
             }
-          sprintf(filename, "./installed/%s/install.note", file -> d_name);
+          sprintf(filename, "%s/%s/%s", DNG_INSTALL_DIRECTORY, file -> d_name, DNG_EXTENSION_RECORD_FILE);
           notefile = LoadNoteFile(filename);
           if(NULL == notefile)
             {

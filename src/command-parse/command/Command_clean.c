@@ -33,7 +33,7 @@ CodeValue
 Command_clean(void *arguments, void *extern_information)
 {
   DIR *directory = NULL;
-  char *parent_directory = "./installed";
+  char *parent_directory = DNG_INSTALL_DIRECTORY;
   struct dirent *file = NULL;
   char **main_argv = (char**)arguments;
   char temp[512] = {0};
@@ -61,11 +61,11 @@ Command_clean(void *arguments, void *extern_information)
             {
               continue;
             }
-          sprintf(filename, "./installed/%s/install.note", file -> d_name);
+          sprintf(filename, "%s/%s/%s", DNG_INSTALL_DIRECTORY, file -> d_name, DNG_EXTENSION_RECORD_FILE);
           notefile = LoadNoteFile(filename);
           if(!strcmp(main_argv[2], notefile -> name))
             {
-              sprintf(temp, "rm -f -r ./installed/%s", file -> d_name);
+              sprintf(temp, "rm -f -r %s/%s", DNG_INSTALL_DIRECTORY, file -> d_name);
               system(temp);
               FreeNoteFile(notefile);
               break;

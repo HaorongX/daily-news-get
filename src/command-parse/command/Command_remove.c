@@ -34,10 +34,10 @@ CodeValue
 Command_remove(void *arguments, void *extern_information)
 {
   DIR *directory = NULL;
-  char *parent_directory = "./installed";
+  char *parent_directory = DNG_INSTALL_DIRECTORY;
   struct dirent *file = NULL;
   char **main_argv = (char**)arguments;
-  char temp[512] = {0};
+  char temp[TEMP_BUFFER_LENGTH] = {0};
   int flag = 0;
   if(*(int*)extern_information <= 2)
     {
@@ -58,7 +58,7 @@ Command_remove(void *arguments, void *extern_information)
       if(DT_DIR == file -> d_type)
         {
           PNoteRecord notefile = NULL;
-          char filename[512] = {0};
+          char filename[FILENAME_MAX_LENGTH] = {0};
           if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
             {
               continue;
