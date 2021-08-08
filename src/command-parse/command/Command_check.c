@@ -95,7 +95,7 @@ Command_check(void *arguments, void *extern_information)
     }
   if(0 == flag)
     {
-      printf("Packed not found,please use 'dng list' for more information");
+      return CV_PACKAGE_NOT_FOUND;
     }
   return CV_SUCCESS;
 }

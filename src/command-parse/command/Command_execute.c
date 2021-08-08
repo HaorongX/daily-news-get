@@ -63,7 +63,7 @@ ExecutePackage(char *name, char *arguments)
   char *parent_directory = "./installed";
   struct dirent *file = NULL;
   char temp[4096] = {0};
-  CodeValue flag = 0;
+  CodeValue flag = CV_PACKAGE_NOT_FOUND;
   directory = opendir(parent_directory);
   if(!directory)
     {
@@ -416,6 +416,10 @@ Command_execute(void *arguments, void *extern_information)
           i++;
         }
       result = ExecutePackage(main_argv[2], combine_argument);
+    }
+  if(CV_SUCCESS != result)
+    {
+      return result;
     }
   /* Second: Gather */
   system("echo >Complete.html");
