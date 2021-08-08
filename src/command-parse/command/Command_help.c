@@ -55,17 +55,7 @@ Command_help(void *arguments, void *extern_information)
   puts("  Require:");
   puts("    1.The program need to provide: install.note help.txt and a connect program");
   puts("      > You can use the 'dng note-maker' to create a install.note for your program");
-  puts("      > The format:");
-  puts("        # Program-Name");
-  puts("        @ Author");
-  puts("          % your name");
-  puts("            @ Version");
-  puts("              % your version");
-  puts("            @ Connect Program");
-  puts("              % path");
-  puts("      > The connect program Only needs to pass on the arguments that the DNG received");
   puts("    2.The program need to include in a floder");
-  puts("    3.The program need to output the article it gathers into a file named 'collect.note'");
   puts("remove [name]");
   puts("  Remove a program but not delete it");
   puts("  If you want to delete the program your installed,try to use the 'clean'");
