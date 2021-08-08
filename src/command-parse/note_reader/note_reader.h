@@ -1,5 +1,6 @@
 #ifndef NOTE_READER_H
 #define NOTE_READER_H
+#include "../public/public.h"
 #include <stdio.h>
 /*****************************************************************
  *

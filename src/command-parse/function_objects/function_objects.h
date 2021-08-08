@@ -12,10 +12,8 @@
  *  Copyright Public Domain 2021
  *
  *********************************************************/
-#define CV_FAILURE 1256
-#define CV_SUCCESS 0
-#define COMMAND_MAXLENGTH 64
-typedef int CodeValue;
+#include "../public/public.h"
+typedef char* CodeValue;
 typedef struct _FunctionObjectData
 {
   CodeValue (*function)(void *arguments, void *extern_information);

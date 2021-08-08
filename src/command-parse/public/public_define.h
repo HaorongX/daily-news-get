@@ -1,0 +1,5 @@
+#ifndef DNG_PUBLIC_DEFINE
+#define DNG_PUBLIC_DEFINE
+#define DNG_VERSION "1.0.0 Beta"
+#define COMMAND_MAXLENGTH 256
+#endif

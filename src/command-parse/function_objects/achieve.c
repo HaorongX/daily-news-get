@@ -88,18 +88,11 @@ CreateFunctionObjectData(CodeValue (*function)(void *arguments, void *extern_inf
     Return value:
       The point to function rule
 
-    Notice:
-
  */
 PFunctionRules
 CreateFunctionRules(void)
 {
-  PFunctionRules result = NULL;
-  if(NULL == (result = (PFunctionRules)calloc(1, sizeof(FunctionRules))))
-    {
-      return NULL;
-    }
-  return result;
+  return (PFunctionRules)calloc(1, sizeof(FunctionRules));
 }
 /*
     AddFunctionRule
@@ -154,9 +147,6 @@ AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, voi
     Return value:
       The function code value
 
-    Notice:
-      CV_FAILURE means failure(not found)
-
  */
 CodeValue
 CallFunction(PFunctionRules rules, char *command, void *arguments, void *extern_information)
@@ -172,7 +162,7 @@ CallFunction(PFunctionRules rules, char *command, void *arguments, void *extern_
         }
       temp = temp -> next;
     }
-  return CV_FAILURE;
+  return CV_COMMAND_NOT_FOUND;
 }
 /*
     CleanFunctionRule
@@ -185,9 +175,6 @@ CallFunction(PFunctionRules rules, char *command, void *arguments, void *extern_
         The existed rules
     Return value:
       The built-in code value
-
-    Notice:
-      CV_FAIlURE means failure
 
  */
 CodeValue
@@ -202,5 +189,5 @@ CleanFunctionRule(PFunctionRules rules)
       temp = temp1;
     }
   free(rules);
-  return CV_FAILURE;
+  return CV_SUCCESS;
 }

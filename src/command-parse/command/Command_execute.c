@@ -56,18 +56,18 @@ FileExist(char *name)
      -1
         Something wrong happend
 */
-int
+CodeValue
 ExecutePackage(char *name, char *arguments)
 {
   DIR *directory = NULL;
   char *parent_directory = "./installed";
   struct dirent *file = NULL;
   char temp[4096] = {0};
-  int flag = -1;
+  CodeValue flag = 0;
   directory = opendir(parent_directory);
   if(!directory)
     {
-      return CV_USER_FAILURE;
+      return CV_OPEN_DIR_FAILRUE;
     }
   while(1)
     {
@@ -100,7 +100,7 @@ ExecutePackage(char *name, char *arguments)
               sprintf(temp, "./installed/%s/%s %s", file -> d_name, notefile -> connect_program, arguments);
               system(temp);
               FreeNoteFile(notefile);
-              flag = 0;
+              flag = CV_SUCCESS;
               break;
             }
           FreeNoteFile(notefile);
@@ -124,7 +124,7 @@ ExecutePackage(char *name, char *arguments)
      -1
         Something wrong happend
 */
-int
+CodeValue
 ExecuteAllPackage(void)
 {
   /* Execute all the package */
@@ -135,7 +135,7 @@ ExecuteAllPackage(void)
   directory = opendir(parent_directory);
   if(!directory)
     {
-      return CV_USER_FAILURE;
+      return CV_OPEN_DIR_FAILRUE;
     }
   while(1)
     {
@@ -288,19 +288,20 @@ GetNewsTitle(char *file)
         The dest package
 
     Return value:
-      No value
+
 */
-void
+CodeValue
 CollectPackage(char *name)
 {
   DIR *directory = NULL;
   char parent_directory[1024] = {0};
   struct dirent *file = NULL;
+  int flag = 0;
   sprintf(parent_directory, "./installed/%s/result", name);
   directory = opendir(parent_directory);
   if(!directory)
   {
-    return ;
+    return CV_OPEN_DIR_FAILRUE;
   }
   while(1)
     {
@@ -324,10 +325,16 @@ CollectPackage(char *name)
               sprintf(filename, "./installed/%s/result/%s", name,file -> d_name);
               CombineFile("Complete.html", filename);
               AddContentToFile("Complete.html", "<br>");
+              flag = 1;
             }
         }
     }
   closedir(directory);
+  if(flag)
+    {
+      return CV_SUCCESS;
+    }
+  return CV_PACKAGE_NOT_FOUND;
 }
 /*
     CollectAllPackage
@@ -394,7 +401,7 @@ Command_execute(void *arguments, void *extern_information)
 {
   char combine_argument[4096] = {0};
   char **main_argv = (char**)arguments;
-  int result = CV_SUCCESS;
+  CodeValue result = CV_SUCCESS;
   /* First: Execute */
   if(*(int*)extern_information == 2)
     {
@@ -418,8 +425,7 @@ Command_execute(void *arguments, void *extern_information)
     }
   else
     {
-      CollectPackage(main_argv[2]);
+      result = CollectPackage(main_argv[2]);
     }
-  puts("Complete!");
   return result;
 }

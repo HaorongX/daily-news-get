@@ -62,7 +62,7 @@ DeleteCharacter(char *string, char character)
 CodeValue
 Command_note_maker(void *arguments, void *extern_information)
 {
-  NoteRecord record;
+  NoteRecord record = {0};
   printf("DNG -- install.note maker\n");
   printf("Version:%s\n", DNG_NOTE_MAKER_VERSION);
   printf("Please make sure your input with no blank");

@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <stdio.h>
+#include "public/public.h"
 #include "function_objects/function_objects.h"
 #include "command/command.h"
 #include "note_reader/note_reader.h"
@@ -53,72 +54,6 @@ InitEnviroment(void)
       return -1;
     }
   return 0;
-}
-/*
-    PrintErrorMessage
-
-    Describle:
-      Print the error message
-
-    Arguments:
-      code
-        The error code
-      message:
-        The message print
-      line:
-        The line of code
-        Should be __LINE__
-
-    Return value:
-      No value
-
-    Notice:
-      If DNG_DEBUG undefined,the third argument will be ignored.
-*/
-void
-PrintErrorMessage(int error_code, char *message, int line)
-{
-  printf("DNG Error:%s\nError code:%3d\n", message, error_code);
-  #ifdef DNG_DEBUG
-  printf("Code line:%d\n", line);
-  #endif
-}
-/*
-    PrintErrorMessageByCode
-
-    Describle:
-      Print the error message by error code
-
-    Arguments:
-      code
-        The error code
-      line:
-        The line of code
-        Should be __LINE__
-
-    Return value:
-      No value
-
-    Notice:
-      If DNG_DEBUG undefined,the third argument will be ignored.
-*/
-void
-PrintErrorMessageByCode(int error_code, int line)
-{
-  switch(error_code)
-    {
-    case CV_FAILURE:
-      PrintErrorMessage(error_code, "Command not found", line);
-      break;
-    case CV_USER_LACK_ARGUMENTS:
-      PrintErrorMessage(error_code, "Need more arguments", line);
-      break;
-    case CV_USER_FILE_FAILURE:
-      PrintErrorMessage(error_code, "Create file failed", line);
-      break;
-    default:
-      break;
-    }
 }
 /*
     PrepareRules
@@ -182,8 +117,8 @@ main(int argc, char **argv)
   mkdir("./installed", S_IRWXU);
   if(argc <= 1)
     {
-      puts("dng: missing command");
-      puts("Try 'dng help' for more infomation");
+      puts("dng: 参数不足");
+      puts("请尝试使用 'dng help' 指令获取更多信息");
       return 0;
     }
   rules = CreateFunctionRules();
@@ -193,7 +128,14 @@ main(int argc, char **argv)
     }
   PrepareRules(rules);
   status_value = CallFunction(rules, argv[1], (void*)argv, (void*)&argc);
-  PrintErrorMessageByCode(status_value, __LINE__);
+  if(CV_SUCCESS != status_value)
+    {
+     PrintErrorMessage(status_value);
+    }
+  else
+    {
+      puts("程序顺利完成");
+    }
   CleanFunctionRule(rules);
   return 0;
 }

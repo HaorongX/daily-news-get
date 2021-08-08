@@ -13,6 +13,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "note_reader.h"
+/*
+    WriteNoteFile
+
+    Describle:
+      Write some content to a note file
+
+    Arguments:
+      filename
+        A point to the note file
+      info
+        The content
+
+     Return value:
+       No value
+*/
 void
 WriteNoteFile(char *filename, PNoteRecord info)
 {
@@ -94,7 +109,8 @@ LoadNoteFile(char *filename)
      Return value:
        No value
 */
-void FreeNoteFile(PNoteRecord file)
+void
+FreeNoteFile(PNoteRecord file)
 {
   free(file);
   file = NULL;

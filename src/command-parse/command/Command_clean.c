@@ -39,12 +39,12 @@ Command_clean(void *arguments, void *extern_information)
   char temp[512] = {0};
   if(*(int*)extern_information <= 2)
     {
-      return CV_USER_LACK_ARGUMENTS;
+      return CV_LACK_ARGUMENTS;
     }
   directory = opendir(parent_directory);
   if(!directory)
     {
-      return CV_USER_FAILURE;
+      return CV_OPEN_DIR_FAILRUE;
     }
   while(1)
     {

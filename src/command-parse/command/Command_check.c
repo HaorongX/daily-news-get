@@ -25,7 +25,8 @@
     Return value:
       No value
 */
-void PrintFileContent(char *filename)
+void
+PrintFileContent(char *filename)
 {
   FILE *fp = NULL;
   int c = 0;
@@ -66,12 +67,12 @@ Command_check(void *arguments, void *extern_information)
   int flag = 0;
   if(*(int*)extern_information <= 2)
     {
-      return CV_USER_LACK_ARGUMENTS;
+      return CV_LACK_ARGUMENTS;
     }
   directory = opendir(parent_directory);
   if(!directory)
     {
-      return CV_FAILURE;
+      return CV_OPEN_DIR_FAILRUE;
     }
   while(1)
     {

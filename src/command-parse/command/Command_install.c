@@ -95,9 +95,13 @@ Command_install(void *arguments, void *extern_information)
   PNoteRecord notefile = NULL;
   if(*(int*)extern_information <= 2)
     {
-      return CV_USER_LACK_ARGUMENTS;
+      return CV_LACK_ARGUMENTS;
     }
   notefile = LoadNoteFile(main_argv[2]);
+  if(NULL == notefile)
+    {
+      return CV_READ_NOTE_FAILURE;
+    }
   GetPackagePath(package_directory, main_argv[2]);
   GetDngPath(dng_directory);
   sprintf(temp, "cp -r %s %s/installed/%s", package_directory, dng_directory, notefile -> name);

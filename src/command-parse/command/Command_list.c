@@ -45,7 +45,7 @@ Command_list(void *arguments, void *extern_information)
   directory = opendir(parent_directory);
   if(!directory)
     {
-      return CV_USER_FAILURE;
+      return CV_OPEN_DIR_FAILRUE;
     }
   puts("================================================================");
   puts("");
