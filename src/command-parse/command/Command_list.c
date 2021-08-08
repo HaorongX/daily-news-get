@@ -47,11 +47,11 @@ Command_list(void *arguments, void *extern_information)
     {
       return CV_USER_FAILURE;
     }
-  puts("================================================");
+  puts("================================================================");
   puts("");
-  puts(" Package             Author              Version");
+  puts("     Package                  Author                 Version");
   puts("");
-  puts("================================================");
+  puts("================================================================");
   while(1)
     {
       file = readdir(directory);
@@ -78,12 +78,12 @@ Command_list(void *arguments, void *extern_information)
             {
               puts("Installing:");
             }
-          printf("%s             %s             %s\n", notefile -> name, notefile -> author, notefile -> version);
+          printf("%16s     %16s       %16s\n", notefile -> name, notefile -> author, notefile -> version);
           FreeNoteFile(notefile);
           count++;
         }
     }
-  puts("================================================");
+  puts("================================================================");
   printf("Install %3d Package\n", count);
   closedir(directory);
   return CV_SUCCESS;

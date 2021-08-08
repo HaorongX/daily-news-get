@@ -73,8 +73,8 @@ Command_help(void *arguments, void *extern_information)
   puts("  Delete a program your installed");
   puts("execute [name]");
   puts("  Execute corrosponding program and output the final article into 'result'(Directory)");
-  puts("  > Name rule: Date\Website\Title.txt");
-  puts("    > Example: 2021-1-1\Hello world\Happy New Year!.txt");
+  printf("  > Name rule: Date%cWebsite%cTitle.txt\n", '\\', '\\');
+  printf("    > Example: 2021-1-1%cHello world%cHappy New Year!.txt", '\\', '\\');
   puts("  > If there is no '[name]', all the program installed will be executed");
   puts("list");
   puts("  List the program you installed");

@@ -1,5 +1,6 @@
 #ifndef NOTE_READER_H
 #define NOTE_READER_H
+#include <stdio.h>
 /*****************************************************************
  *
  *  DNG Project
@@ -14,11 +15,12 @@
  *****************************************************************/
 typedef struct _NoteRecord
 {
-  char name[256];
-  char author[256];
-  char version[256];
-  char connect_program[256];
+  char name[512];
+  char author[512];
+  char version[512];
+  char connect_program[512];
 }NoteRecord, *PNoteRecord;
+void WriteNoteFile(char *filename, PNoteRecord info);
 void DeleteCharacterFromStringFromString(char *string, char character);
 PNoteRecord LoadNoteFile(char *filename);
 void FreeNoteFile(PNoteRecord file);

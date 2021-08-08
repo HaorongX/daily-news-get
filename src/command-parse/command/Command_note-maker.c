@@ -9,6 +9,7 @@
 *
 *************************************************/
 #include "command.h"
+#include "../note_reader/note_reader.h"
 #include <stdio.h>
 #define DNG_NOTE_MAKER_VERSION "0.0.2"
 /*
@@ -61,11 +62,7 @@ DeleteCharacter(char *string, char character)
 CodeValue
 Command_note_maker(void *arguments, void *extern_information)
 {
-  FILE *install_note = NULL;
-  char input_name[256] = {0};
-  char input_author[256] = {0};
-  char input_version[256] = {0};
-  char input_connect_program[256] = {0};
+  NoteRecord record;
   printf("DNG -- install.note maker\n");
   printf("Version:%s\n", DNG_NOTE_MAKER_VERSION);
   printf("Please make sure your input with no blank");
@@ -73,37 +70,26 @@ Command_note_maker(void *arguments, void *extern_information)
   printf("Plesase input your project name\n");
   printf("For example: my-gather\n");
   printf("Your project name:");
-  fgets(input_name, 255, stdin);
+  fgets(record.name, sizeof(record.name), stdin);
   printf("Step 2:");
   printf("Plesase input your project author\n");
   printf("For example: pie\n");
   printf("Your name:");
-  fgets(input_author, 255, stdin);
+  fgets(record.author, sizeof(record.author), stdin);
   printf("Step 3:");
   printf("Plesase input your project version\n");
   printf("For example: 0.0.1\n");
   printf("Your version:");
-  fgets(input_version, 255, stdin);
+  fgets(record.version, sizeof(record.version), stdin);
   printf("Step 4:");
   printf("Plesase input your connect program\n");
   printf("For example: connect.out\n");
   printf("Your connect program:");
-  fgets(input_connect_program, 255, stdin);
-  if(NULL == (install_note = fopen("install.note", "w")))
-    {
-      return CV_USER_FILE_FAILURE;
-    }
-  DeleteCharacter(input_name, '\n');
-  DeleteCharacter(input_author, '\n');
-  DeleteCharacter(input_version, '\n');
-  DeleteCharacter(input_connect_program, '\n');
-  fprintf(install_note, "# %s\n", input_name);
-  fprintf(install_note, "  @ Author\n");
-  fprintf(install_note, "    %% %s\n", input_author);
-  fprintf(install_note, "  @ Version\n");
-  fprintf(install_note, "    %% %s\n", input_version);
-  fprintf(install_note, "  @ Connect Program\n");
-  fprintf(install_note, "    %% %s\n", input_connect_program);
-  fclose(install_note);
+  fgets(record.connect_program, sizeof(record.connect_program), stdin);
+  DeleteCharacter(record.name, '\n');
+  DeleteCharacter(record.author, '\n');
+  DeleteCharacter(record.version, '\n');
+  DeleteCharacter(record.connect_program, '\n');
+  WriteNoteFile("install.note", &record);
   return CV_SUCCESS;
 }

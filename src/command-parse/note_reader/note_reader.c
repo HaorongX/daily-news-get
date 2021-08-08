@@ -13,6 +13,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "note_reader.h"
+void
+WriteNoteFile(char *filename, PNoteRecord info)
+{
+  FILE *fp = NULL;
+  fp = fopen(filename, "w");
+  fwrite(info, sizeof(NoteRecord), 1, fp);
+  fclose(fp);
+}
 /*
     DeleteCharacterFromString
 
@@ -57,34 +65,20 @@ DeleteCharacterFromStringFromString(char *string, char character)
 PNoteRecord
 LoadNoteFile(char *filename)
 {
-  FILE *fp = NULL;
   PNoteRecord result = NULL;
-  char temp[32] = {0};
-  fp = fopen(filename, "r");
-  if(NULL == fp)
-    return NULL;
+  FILE *fp = NULL;
   result = (PNoteRecord)calloc(1, sizeof(NoteRecord));
   if(NULL == result)
     {
-      fclose(fp);
       return NULL;
     }
-  fgets(temp, 3, fp);
-  fgets(result -> name, 255, fp);
-  fgets(temp, 31, fp);
-  fgets(temp, 7, fp);
-  fgets(result -> author, 255, fp);
-  fgets(temp, 31, fp);
-  fgets(temp, 7, fp);
-  fgets(result -> version, 255, fp);
-  fgets(temp, 31, fp);
-  fgets(temp, 7, fp);
-  fgets(result -> connect_program, 255, fp);
+  if(NULL == (fp = fopen(filename, "r")))
+    {
+      free(result);
+      return NULL;
+    }
+  fread((void**)result, sizeof(NoteRecord), 1, fp);
   fclose(fp);
-  DeleteCharacterFromStringFromString(result -> name, '\n');
-  DeleteCharacterFromStringFromString(result -> author, '\n');
-  DeleteCharacterFromStringFromString(result -> version, '\n');
-  DeleteCharacterFromStringFromString(result -> connect_program, '\n');
   return result;
 }
 /*

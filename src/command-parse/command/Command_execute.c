@@ -156,6 +156,8 @@ ExecuteAllPackage(void)
               continue;
             }
           sprintf(temp, "./installed/%s/%s", file -> d_name, notefile -> connect_program);
+                        puts("test");
+              puts(notefile ->connect_program);
           system(temp);
           FreeNoteFile(notefile);
         }
