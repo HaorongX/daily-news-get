@@ -47,6 +47,7 @@ int
 main(int argc, char* argv[])
 {
     string command = "python3 ./banyuetan.py ";
+    InitEnviroment();
     for (int i = 1;i < argc;++ i)
     {
         command += argv[i];
