@@ -27,6 +27,6 @@
 CodeValue
 Command_version(void *arguments, void *extern_information)
 {
-  puts("0.0.4 Beta");
+  puts("0.0.5 Alpha");
   return CV_SUCCESS;
 }
