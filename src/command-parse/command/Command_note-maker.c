@@ -81,6 +81,6 @@ Command_note_maker(void *arguments, void *extern_information)
   DeleteCharacter(record.author, '\n');
   DeleteCharacter(record.version, '\n');
   DeleteCharacter(record.connect_program, '\n');
-  WriteNoteFile(DNG_EXTENSION_RECORD_FILE, &record);
+  WriteNoteFile("install.note", &record);
   return CV_SUCCESS;
 }

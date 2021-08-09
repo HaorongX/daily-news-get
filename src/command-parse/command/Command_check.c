@@ -61,7 +61,7 @@ CodeValue
 Command_check(void *arguments, void *extern_information)
 {
   DIR *directory = NULL;
-  char *parent_directory = DNG_INSTALL_DIRECTORY;
+  char *parent_directory = "./installed";
   struct dirent *file = NULL;
   char **main_argv = (char**)arguments;
   int flag = 0;
@@ -86,7 +86,7 @@ Command_check(void *arguments, void *extern_information)
           if(!strcmp(file -> d_name, main_argv[2]))
             {
               char filename[512] = {0};
-              sprintf(filename, "%s/%s/%s", DNG_INSTALL_DIRECTORY, file -> d_name, DNG_EXTENSION_HELP_FILE);
+              sprintf(filename, "./installed/%s/help.txt", file -> d_name);
               PrintFileContent(filename);
               flag = 1;
               break;

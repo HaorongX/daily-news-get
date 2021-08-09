@@ -60,7 +60,7 @@ CodeValue
 ExecutePackage(char *name, char *arguments)
 {
   DIR *directory = NULL;
-  char *parent_directory = DNG_INSTALL_DIRECTORY;
+  char *parent_directory = "./installed";
   struct dirent *file = NULL;
   char temp[4096] = {0};
   CodeValue flag = CV_PACKAGE_NOT_FOUND;
@@ -80,7 +80,7 @@ ExecutePackage(char *name, char *arguments)
         {
           PNoteRecord notefile = NULL;
           char filename[512] = {0};
-          sprintf(temp, "%s/%s/%s", DNG_INSTALL_DIRECTORY, file -> d_name, DNG_EXTENSION_CLOSE_FILE);
+          sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
           if(FileExist(temp))
             {
               continue;
@@ -89,7 +89,7 @@ ExecutePackage(char *name, char *arguments)
             {
               continue;
             }
-          sprintf(filename, "%s/%s/%s", DNG_INSTALL_DIRECTORY, file -> d_name, DNG_EXTENSION_RECORD_FILE);
+          sprintf(filename, "./installed/%s/install.note", file -> d_name);
           notefile = LoadNoteFile(filename);
           if(NULL == notefile)
             {
@@ -97,7 +97,7 @@ ExecutePackage(char *name, char *arguments)
             }
           if(!strcmp(notefile -> name, name))
             {
-              sprintf(temp, "%s/%s/%s %s", DNG_INSTALL_DIRECTORY, file -> d_name, notefile -> connect_program, arguments);
+              sprintf(temp, "./installed/%s/%s %s", file -> d_name, notefile -> connect_program, arguments);
               system(temp);
               FreeNoteFile(notefile);
               flag = CV_SUCCESS;
@@ -131,7 +131,7 @@ ExecuteAllPackage(void)
   DIR *directory = NULL;
   char *parent_directory = "./installed";
   struct dirent *file = NULL;
-  char temp[TEMP_BUFFER_LENGTH] = {0};
+  char temp[4096] = {0};
   directory = opendir(parent_directory);
   if(!directory)
     {
@@ -147,7 +147,7 @@ ExecuteAllPackage(void)
       if(DT_DIR == file -> d_type)
         {
           PNoteRecord notefile = NULL;
-          char filename[FILENAME_MAX_LENGTH] = {0};
+          char filename[512] = {0};
           sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
           if(FileExist(temp))
             {
@@ -190,7 +190,7 @@ GetFileSuffixName(char *path)
   int length = strlen(path);
   int suffix_length = 0;
   int i = 0;
-  static char dest[FILENAME_MAX_LENGTH] = {0};
+  static char dest[128] = {0};
   memset(dest, 0, sizeof(dest));
   while(*(path + length - suffix_length) != '.')
     {
@@ -241,7 +241,7 @@ CombineFile(char *file_1,char *file_2)
 {
   FILE *fp1 = fopen(file_1, "a+");
   FILE *fp2 = fopen(file_2, "r");
-  char temp[TEMP_BUFFER_LENGTH] = {0};
+  char temp[1024] = {0};
   while(!feof(fp2))
     {
       fgets(temp, sizeof(temp), fp2);
@@ -268,7 +268,7 @@ GetNewsTitle(char *file)
 {
   char *suffix = NULL;
   char *c_directory = 0;
-  static char result[TEMP_BUFFER_LENGTH] = {0};
+  static char result[512] = {0};
   memset(result, 0, sizeof(result));
   strcpy(result, file);
   suffix = strstr(result, ".txt");
@@ -294,10 +294,10 @@ CodeValue
 CollectPackage(char *name)
 {
   DIR *directory = NULL;
-  char parent_directory[PATH_MAX_LENGTH] = {0};
+  char parent_directory[1024] = {0};
   struct dirent *file = NULL;
   int flag = 0;
-  sprintf(parent_directory, "%s/%s/%s", DNG_INSTALL_DIRECTORY, name, DNG_EXTENSION_OUTPUT_EXTENSION);
+  sprintf(parent_directory, "./installed/%s/result", name);
   directory = opendir(parent_directory);
   if(!directory)
   {
@@ -318,13 +318,13 @@ CollectPackage(char *name)
         {
           if(!strcmp("txt", GetFileSuffixName(file -> d_name)))
             {
-              char content[TEMP_BUFFER_LENGTH] = {0};
-              char filename[FILENAME_MAX_LENGTH] = {0};
+              char content[1024] = {0};
+              char filename[1024] = {0};
               sprintf(content, "<b> %s </b><br>\n", GetNewsTitle(file -> d_name));
-              AddContentToFile(DNG_OUTPUT_FILE, content);
-              sprintf(filename, "%s/%s/%s/%s", DNG_INSTALL_DIRECTORY, name, DNG_EXTENSION_OUTPUT_EXTENSION,file -> d_name);
-              CombineFile(DNG_OUTPUT_FILE, filename);
-              AddContentToFile(DNG_OUTPUT_FILE, "<br>");
+              AddContentToFile("Complete.html", content);
+              sprintf(filename, "./installed/%s/result/%s", name,file -> d_name);
+              CombineFile("Complete.html", filename);
+              AddContentToFile("Complete.html", "<br>");
               flag = 1;
             }
         }
@@ -352,7 +352,7 @@ void
 CollectAllPackage(void)
 {
   DIR *directory = NULL;
-  char *parent_directory = DNG_INSTALL_DIRECTORY;
+  char *parent_directory = "./installed/";
   struct dirent *file = NULL;
   directory = opendir(parent_directory);
   if(!directory)
@@ -374,7 +374,7 @@ CollectAllPackage(void)
             continue;
           }
           sprintf(content,"<br><h1>%s</h1><br>",file -> d_name);
-          AddContentToFile(DNG_OUTPUT_FILE, content);
+          AddContentToFile("Complete.html", content);
           CollectPackage(file -> d_name);
         }
     }
@@ -399,7 +399,7 @@ CollectAllPackage(void)
 CodeValue
 Command_execute(void *arguments, void *extern_information)
 {
-  char combine_argument[TEMP_BUFFER_LENGTH] = {0};
+  char combine_argument[4096] = {0};
   char **main_argv = (char**)arguments;
   CodeValue result = CV_SUCCESS;
   /* First: Execute */
