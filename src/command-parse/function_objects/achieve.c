@@ -114,12 +114,16 @@ CreateFunctionRules(void)
     Notice:
 
  */
-CodeValue
+CodeStatus
 AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, void *extern_information), char *command)
 {
 
   PFunctionObject object = NULL;
   object = CreateFunctionObject(function, command);
+  if(object == NULL)
+    {
+      return ERROR_ALLOC_MEMORY;
+    }
   if(NULL == rules -> first)
     {
       rules -> first = object;
@@ -130,7 +134,7 @@ AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, voi
       rules -> last -> next = object;
       rules -> last = object;
     }
-  return CV_SUCCESS;
+  return S_SUCCESS;
 }
 /*
     CallFunction

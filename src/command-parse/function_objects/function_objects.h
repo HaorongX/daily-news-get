@@ -16,7 +16,7 @@
 PFunctionObject CreateFunctionObject(CodeValue (*function)(void *arguments, void *extern_information), char *command);
 PFunctionObjectData CreateFunctionObjectData(CodeValue (*function)(void *arguments, void *extern_information), char *command);
 PFunctionRules CreateFunctionRules(void);
-CodeValue AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, void *extern_information), char *command);
+CodeStatus AddFunctionRule(PFunctionRules rules, CodeValue (*function)(void *arguments, void *extern_information), char *command);
 CodeValue CallFunction(PFunctionRules rules, char *command, void *arguments, void *extern_information);
 CodeValue CleanFunctionRule(PFunctionRules rules);
 #endif

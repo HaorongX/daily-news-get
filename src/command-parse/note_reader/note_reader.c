@@ -33,8 +33,13 @@ WriteNoteFile(char *filename, PNoteRecord info)
 {
   FILE *fp = NULL;
   fp = fopen(filename, "w");
+  if(NULL == fp)
+    {
+      return ERROR_CREATE_FILE;
+    }
   fwrite(info, sizeof(NoteRecord), 1, fp);
   fclose(fp);
+  return S_SUCCESS;
 }
 /*
     LoadNoteFile
@@ -86,4 +91,5 @@ FreeNoteFile(PNoteRecord file)
 {
   free(file);
   file = NULL;
+  return S_SUCCESS;
 }
