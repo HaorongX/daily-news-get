@@ -14,320 +14,51 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dirent.h>
-/*
-    FileExist
-
-    Describle:
-      Is file exist?
-    Arguments:
-      path
-        The path to the file
-    Return value:
-      0
-        Exist
-     -1
-        No file
-*/
-int
-FileExist(char *name)
+CodeStatus MargeResultToFile(FileInfo info, void *argument)
 {
-  FILE *fp;
-  fp = fopen(name, "r");
-  if(NULL == fp)
+  if(strstr(info.name, DNG_EXTENSION_OUTPUT_FILE_SUFFIX_NAME))
     {
-      return 0;
+      char temp[TEMP_BUFFER_LENGTH] = {0};
+      char title[TEMP_BUFFER_LENGTH] = {0};
+      char *character = 0;
+      sprintf(temp, "%s/%s", info.path, info.name);
+      character = strrchr(info.name, '\\');
+      strncpy(title, character + 1, strlen(character) - strlen(DNG_EXTENSION_OUTPUT_FILE_SUFFIX_NAME) - strlen(".") - strlen("."));
+      puts(title);
+      AddContentToFile("Complete.html", "\n<br><b>");
+      AddContentToFile("Complete.html", title);
+      AddContentToFile("Complete.html", "</b><br>\n");
+      CombineFile("Complete.html", temp);
     }
-  fclose(fp);
-  return 1;
+  return S_SUCCESS;
 }
-/*
-    ExecutePackage
-
-    Describle:
-      Execute a program
-    Arguments:
-      name
-        The name of the program
-      arguments
-        The arguments to the program
-    Return value:
-      0
-        Success
-     -1
-        Something wrong happend
-*/
-CodeValue
-ExecutePackage(char *name, char *arguments)
+CodeStatus package_handle(FileInfo info, void *argument)
 {
-  DIR *directory = NULL;
-  char *parent_directory = "./installed";
-  struct dirent *file = NULL;
-  char temp[4096] = {0};
-  CodeValue flag = CV_PACKAGE_NOT_FOUND;
-  directory = opendir(parent_directory);
-  if(!directory)
+  PNoteRecord record = NULL;
+  char temp[TEMP_BUFFER_LENGTH] = {0};
+  if(DT_DIR != info.type)
     {
-      return CV_OPEN_DIR_FAILRUE;
+      return S_SUCCESS;
     }
-  while(1)
-    {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(DT_DIR == file -> d_type)
-        {
-          PNoteRecord notefile = NULL;
-          char filename[512] = {0};
-          sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
-          if(FileExist(temp))
-            {
-              continue;
-            }
-          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
-            {
-              continue;
-            }
-          sprintf(filename, "./installed/%s/install.note", file -> d_name);
-          notefile = LoadNoteFile(filename);
-          if(NULL == notefile)
-            {
-              continue;
-            }
-          if(!strcmp(notefile -> name, name))
-            {
-              sprintf(temp, "./installed/%s/%s %s", file -> d_name, notefile -> connect_program, arguments);
-              system(temp);
-              FreeNoteFile(notefile);
-              flag = CV_SUCCESS;
-              break;
-            }
-          FreeNoteFile(notefile);
-        }
-    }
-  closedir(directory);
-  return flag;
+  record = AccessPackageRecord(info.name);
+  sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, info.name, record -> connect_program);
+  system(temp);
+  FreeNoteFile(record);
+  sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, info.name, DNG_EXTENSION_RESULT_DIRECTORY);
+  AccessDirectory(temp, MargeResultToFile, 0, 0);
+  return S_SUCCESS;
 }
-/*
-    ExecuteAllPackage
-
-    Describle:
-      Execute all the program
-
-    Arguments:
-      No argument
-
-    Return value:
-      0
-        Success
-     -1
-        Something wrong happend
-*/
-CodeValue
-ExecuteAllPackage(void)
+CodeStatus package_single_handle(char *package_name)
 {
-  /* Execute all the package */
-  DIR *directory = NULL;
-  char *parent_directory = "./installed";
-  struct dirent *file = NULL;
-  char temp[4096] = {0};
-  directory = opendir(parent_directory);
-  if(!directory)
-    {
-      return CV_OPEN_DIR_FAILRUE;
-    }
-  while(1)
-    {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(DT_DIR == file -> d_type)
-        {
-          PNoteRecord notefile = NULL;
-          char filename[512] = {0};
-          sprintf(temp, "./installed/%s/remove.lock", file -> d_name);
-          if(FileExist(temp))
-            {
-              continue;
-            }
-          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
-            {
-              continue;
-            }
-          sprintf(filename, "./installed/%s/install.note", file -> d_name);
-          notefile = LoadNoteFile(filename);
-          if(NULL == notefile)
-            {
-              continue;
-            }
-          sprintf(temp, "./installed/%s/%s", file -> d_name, notefile -> connect_program);
-          system(temp);
-          FreeNoteFile(notefile);
-        }
-    }
-  closedir(directory);
-  return CV_SUCCESS;
-}
-/*
-    GetFileSuffixName
-
-    Describle:
-      Get a file suffix name by full path
-
-    Arguments:
-      path
-        The full path of the file
-
-    Return value:
-      The suffix name
-*/
-char*
-GetFileSuffixName(char *path)
-{
-  int length = strlen(path);
-  int suffix_length = 0;
-  int i = 0;
-  static char dest[128] = {0};
-  memset(dest, 0, sizeof(dest));
-  while(*(path + length - suffix_length) != '.')
-    {
-      suffix_length++;
-    }
-  strcpy(dest, (path + length - suffix_length + 1));
-  return dest;
-}
-/*
-    GetNewsTitle
-
-    Describle:
-      Get news title by full path
-
-    Arguments:
-      file
-        The full path
-
-    Return value:
-      The title
-*/
-char*
-GetNewsTitle(char *file)
-{
-  char *suffix = NULL;
-  char *c_directory = 0;
-  static char result[512] = {0};
-  memset(result, 0, sizeof(result));
-  strcpy(result, file);
-  suffix = strstr(result, ".txt");
-  memset(suffix, 0, strlen(suffix));
-  c_directory = strrchr(result, '\\');
-  strncpy(result, c_directory + 1, strlen(c_directory + 1));
-  return result;
-}
-/*
-    Collectpackage
-
-    Describle:
-      Collect daily news
-
-    Arguments:
-      name
-        The dest package
-
-    Return value:
-
-*/
-CodeValue
-CollectPackage(char *name)
-{
-  DIR *directory = NULL;
-  char parent_directory[1024] = {0};
-  struct dirent *file = NULL;
-  int flag = 0;
-  sprintf(parent_directory, "./installed/%s/result", name);
-  directory = opendir(parent_directory);
-  if(!directory)
-  {
-    return CV_OPEN_DIR_FAILRUE;
-  }
-  while(1)
-    {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
-      {
-        continue;
-      }
-      if(DT_REG == file -> d_type)
-        {
-          if(!strcmp("txt", GetFileSuffixName(file -> d_name)))
-            {
-              char content[1024] = {0};
-              char filename[1024] = {0};
-              sprintf(content, "<b> %s </b><br>\n", GetNewsTitle(file -> d_name));
-              AddContentToFile("Complete.html", content);
-              sprintf(filename, "./installed/%s/result/%s", name,file -> d_name);
-              CombineFile("Complete.html", filename);
-              AddContentToFile("Complete.html", "<br>");
-              flag = 1;
-            }
-        }
-    }
-  closedir(directory);
-  if(flag)
-    {
-      return CV_SUCCESS;
-    }
-  return CV_PACKAGE_NOT_FOUND;
-}
-/*
-    CollectAllPackage
-
-    Describle:
-      Collect daily news
-
-    Arguments:
-      No arguments
-
-    Return value:
-      No value
-*/
-void
-CollectAllPackage(void)
-{
-  DIR *directory = NULL;
-  char *parent_directory = "./installed/";
-  struct dirent *file = NULL;
-  directory = opendir(parent_directory);
-  if(!directory)
-  {
-    return ;
-  }
-  while(1)
-    {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(DT_DIR == file -> d_type)
-        {
-          char content[1024];
-          if(!strcmp(file -> d_name, ".") || !strcmp(file -> d_name, ".."))
-          {
-            continue;
-          }
-          sprintf(content,"<br><h1>%s</h1><br>",file -> d_name);
-          AddContentToFile("Complete.html", content);
-          CollectPackage(file -> d_name);
-        }
-    }
-  closedir(directory);
+  PNoteRecord record = NULL;
+  char temp[TEMP_BUFFER_LENGTH] = {0};
+  record = AccessPackageRecord(package_name);
+  sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, record -> connect_program);
+  system(temp);
+  FreeNoteFile(record);
+  sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, DNG_EXTENSION_RESULT_DIRECTORY);
+  AccessDirectory(temp, MargeResultToFile, 0, 0);
+  return S_SUCCESS;
 }
 /*
     Command_execute
@@ -348,37 +79,16 @@ CollectAllPackage(void)
 CodeValue
 Command_execute(void *arguments, void *extern_information)
 {
-  char combine_argument[4096] = {0};
   char **main_argv = (char**)arguments;
-  CodeValue result = CV_SUCCESS;
-  /* First: Execute */
+  RemoveFile("Complete.html");
+  CreateEmptyFile("Complete.html");
   if(*(int*)extern_information == 2)
     {
-      result = ExecuteAllPackage();
+      AccessDirectory(DNG_EXTENSION_INSTALL_DIRECTORY, package_handle, NULL, 0);
     }
   else
     {
-      int i = 3;
-      while(i < ((*(int*)extern_information)))
-        {
-          strcat(combine_argument, main_argv[i - 1]);
-          i++;
-        }
-      result = ExecutePackage(main_argv[2], combine_argument);
+      package_single_handle(main_argv[2]);
     }
-  if(CV_SUCCESS != result)
-    {
-      return result;
-    }
-  /* Second: Gather */
-  system("echo >Complete.html");
-  if(*(int*)extern_information == 2)
-    {
-      CollectAllPackage();
-    }
-  else
-    {
-      result = CollectPackage(main_argv[2]);
-    }
-  return result;
+  return CV_SUCCESS;
 }
