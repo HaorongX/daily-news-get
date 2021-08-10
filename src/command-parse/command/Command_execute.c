@@ -200,57 +200,6 @@ GetFileSuffixName(char *path)
   return dest;
 }
 /*
-    AddContentToFile
-
-    Describle:
-      Add a string to file
-
-    Arguments:
-      file
-        The dest file
-      content
-        The content
-
-    Return value:
-      No value
-*/
-void
-AddContentToFile(char *file, char *content)
-{
-  FILE *fp = fopen(file, "a+");
-  fputs(content, fp);
-  fclose(fp);
-}
-/*
-    CombineFile
-
-    Describle:
-      Combine 2 files content
-
-    Arguments:
-      file_1
-        The dest file
-      file_2
-        The source file
-
-    Return value:
-      No value
-*/
-void
-CombineFile(char *file_1,char *file_2)
-{
-  FILE *fp1 = fopen(file_1, "a+");
-  FILE *fp2 = fopen(file_2, "r");
-  char temp[1024] = {0};
-  while(!feof(fp2))
-    {
-      fgets(temp, sizeof(temp), fp2);
-      fprintf(fp1, "%s", temp);
-    }
-  fclose(fp1);
-  fclose(fp2);
-}
-/*
     GetNewsTitle
 
     Describle:

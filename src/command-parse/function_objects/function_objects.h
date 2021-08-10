@@ -13,23 +13,6 @@
  *
  *********************************************************/
 #include "../public/public.h"
-typedef char* CodeValue;
-typedef struct _FunctionObjectData
-{
-  CodeValue (*function)(void *arguments, void *extern_information);
-  char command[COMMAND_MAXLENGTH];
-}FunctionObjectData, *PFunctionObjectData;
-typedef struct _FunctionObject
-{
-  FunctionObjectData function_object_data;
-  struct _FunctionObject *next;
-}FunctionObject, *PFunctionObject;
-typedef struct _FunctionObjects
-{
-  PFunctionObject first;
-  PFunctionObject last;
-  FunctionObjectData data;
-}FunctionObjects, *PFunctionObjects, FunctionRules, *PFunctionRules;
 PFunctionObject CreateFunctionObject(CodeValue (*function)(void *arguments, void *extern_information), char *command);
 PFunctionObjectData CreateFunctionObjectData(CodeValue (*function)(void *arguments, void *extern_information), char *command);
 PFunctionRules CreateFunctionRules(void);

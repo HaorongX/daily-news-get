@@ -14,15 +14,7 @@
  *
  *
  *****************************************************************/
-typedef struct _NoteRecord
-{
-  char name[512];
-  char author[512];
-  char version[512];
-  char connect_program[512];
-}NoteRecord, *PNoteRecord;
-void WriteNoteFile(char *filename, PNoteRecord info);
-void DeleteCharacterFromStringFromString(char *string, char character);
+CodeStatus WriteNoteFile(char *filename, PNoteRecord info);
 PNoteRecord LoadNoteFile(char *filename);
-void FreeNoteFile(PNoteRecord file);
+CodeStatus FreeNoteFile(PNoteRecord file);
 #endif

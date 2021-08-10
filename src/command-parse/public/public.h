@@ -12,6 +12,11 @@
  *********************************************************/
 #ifndef DNG_PUBLIC
 #define DNG_PUBLIC
+#include <stdio.h>
+#include <stdlib.h>
 #include "public_define.h"
 #include "public_error.h"
+#include "public_type.h"
+#include "public_file.h"
+#include "public_string.h"
 #endif

@@ -28,41 +28,13 @@
      Return value:
        No value
 */
-void
+CodeStatus
 WriteNoteFile(char *filename, PNoteRecord info)
 {
   FILE *fp = NULL;
   fp = fopen(filename, "w");
   fwrite(info, sizeof(NoteRecord), 1, fp);
   fclose(fp);
-}
-/*
-    DeleteCharacterFromString
-
-    Describle:
-      Delete a character from a string
-
-    Arguments:
-      string
-        The source string
-      character
-        The character
-
-     Return value:
-       No value
-*/
-void
-DeleteCharacterFromStringFromString(char *string, char character)
-{
-  int i = 0;
-  while('\0' != *(string + i))
-    {
-      if(*(string + i) == character)
-        {
-          *(string + i) = '\0';
-        }
-      i++;
-    }
 }
 /*
     LoadNoteFile
@@ -109,7 +81,7 @@ LoadNoteFile(char *filename)
      Return value:
        No value
 */
-void
+CodeStatus
 FreeNoteFile(PNoteRecord file)
 {
   free(file);

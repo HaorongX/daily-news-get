@@ -31,7 +31,7 @@
 void
 GetDngPath(char *dest)
 {
-  char path[1025] = {0};
+  char path[PATH_MAXLENGTH] = {0};
   int length = 0;
   readlink("/proc/self/exe",path,1024);
   length = strlen(path);
@@ -88,10 +88,10 @@ GetPackagePath(char *dest, char *path)
 CodeValue
 Command_install(void *arguments, void *extern_information)
 {
-  char package_directory[1025] = {0};
-  char dng_directory[1025] = {0};
+  char package_directory[PATH_MAXLENGTH] = {0};
+  char dng_directory[PATH_MAXLENGTH] = {0};
   char **main_argv = (char**)arguments;
-  char temp[1024] = {0};
+  char temp[TEMP_BUFFER_LENGTH] = {0};
   PNoteRecord notefile = NULL;
   if(*(int*)extern_information <= 2)
     {
@@ -104,8 +104,8 @@ Command_install(void *arguments, void *extern_information)
     }
   GetPackagePath(package_directory, main_argv[2]);
   GetDngPath(dng_directory);
-  sprintf(temp, "cp -r %s %s/installed/%s", package_directory, dng_directory, notefile -> name);
-  system(temp);
+  sprintf(temp, "%s/installed/%s",dng_directory, notefile -> name);
+  CopyDirectory(package_directory, temp);
   FreeNoteFile(notefile);
   return CV_SUCCESS;
 }

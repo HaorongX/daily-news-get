@@ -62,7 +62,7 @@ Command_list(void *arguments, void *extern_information)
       if(DT_DIR == file -> d_type)
         {
           PNoteRecord notefile = NULL;
-          char filename[512] = {0};
+          char filename[PATH_MAXLENGTH] = {0};
           if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
             {
               continue;

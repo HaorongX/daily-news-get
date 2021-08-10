@@ -13,35 +13,6 @@
 #include <string.h>
 #include <dirent.h>
 /*
-    PrintFileContent
-
-    Describle:
-      Print a file content
-
-    Arguments:
-      filename
-        The file name
-
-    Return value:
-      No value
-*/
-void
-PrintFileContent(char *filename)
-{
-  FILE *fp = NULL;
-  int c = 0;
-  fp = fopen(filename, "r");
-  if(NULL == fp)
-    {
-      return ;
-    }
-  while(EOF != (c = fgetc(fp)))
-    {
-      fputc(c, stdout);
-    }
-  fclose(fp);
-}
-/*
     Command_check
 
     Describle:
@@ -60,42 +31,16 @@ PrintFileContent(char *filename)
 CodeValue
 Command_check(void *arguments, void *extern_information)
 {
-  DIR *directory = NULL;
-  char *parent_directory = "./installed";
-  struct dirent *file = NULL;
   char **main_argv = (char**)arguments;
-  int flag = 0;
+  char filename[PATH_MAXLENGTH] = {0};
   if(*(int*)extern_information <= 2)
     {
       return CV_LACK_ARGUMENTS;
     }
-  directory = opendir(parent_directory);
-  if(!directory)
+  sprintf(filename, "./%s/%s/%s",DNG_EXTENSION_INSTALL_DIRECTORY, main_argv[2], DNG_EXTENSION_HELP_FILE);
+  if(S_SUCCESS != PrintFileContent(filename))
     {
-      return CV_OPEN_DIR_FAILRUE;
-    }
-  while(1)
-    {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(DT_DIR == file -> d_type)
-        {
-          if(!strcmp(file -> d_name, main_argv[2]))
-            {
-              char filename[512] = {0};
-              sprintf(filename, "./installed/%s/help.txt", file -> d_name);
-              PrintFileContent(filename);
-              flag = 1;
-              break;
-            }
-        }
-    }
-  if(0 == flag)
-    {
-      return CV_PACKAGE_NOT_FOUND;
+      return CV_PACKAGE_HELP_FAILURE;
     }
   return CV_SUCCESS;
 }

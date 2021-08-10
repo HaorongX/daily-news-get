@@ -10,36 +10,9 @@
 *************************************************/
 #include "command.h"
 #include "../note_reader/note_reader.h"
+#include "../public/public.h"
 #include <stdio.h>
 #define DNG_NOTE_MAKER_VERSION "0.0.2"
-/*
-    DeleteCharacter
-
-    Describle:
-      Delete a character from a string
-
-    Arguments:
-      string
-        The source string
-      character
-        The character
-
-     Return value:
-       No value
-*/
-void
-DeleteCharacter(char *string, char character)
-{
-  int i = 0;
-  while('\0' != *(string + i))
-    {
-      if(*(string + i) == character)
-        {
-          *(string + i) = '\0';
-        }
-      i++;
-    }
-}
 /*
     Command_note_maker
 
@@ -81,6 +54,6 @@ Command_note_maker(void *arguments, void *extern_information)
   DeleteCharacter(record.author, '\n');
   DeleteCharacter(record.version, '\n');
   DeleteCharacter(record.connect_program, '\n');
-  WriteNoteFile("install.note", &record);
+  WriteNoteFile(DNG_EXTENSION_RECORD_FILE, &record);
   return CV_SUCCESS;
 }
