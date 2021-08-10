@@ -29,8 +29,8 @@ typedef struct _FunctionObjects
 }FunctionObjects, *PFunctionObjects, FunctionRules, *PFunctionRules;
 typedef struct _FileInfo
 {
-  char *path;
-  char *name;
+  char path[PATH_MAXLENGTH];
+  char name[PATH_MAXLENGTH];
   FileType type;
 }FileInfo;
 #endif

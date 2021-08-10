@@ -2,6 +2,7 @@
 #define NOTE_READER_H
 #include "../public/public.h"
 #include <stdio.h>
+#define AccessPackageNoteFile(name) AccessPackageRecord(name)
 /*****************************************************************
  *
  *  DNG Project
@@ -17,4 +18,5 @@
 CodeStatus WriteNoteFile(char *filename, PNoteRecord info);
 PNoteRecord LoadNoteFile(char *filename);
 CodeStatus FreeNoteFile(PNoteRecord file);
+PNoteRecord AccessPackageRecord(char *package_name);
 #endif

@@ -13,6 +13,27 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+CodeStatus file_handle(FileInfo info, void *arguments)
+{
+  int *count = (int*)arguments;
+  if(DT_DIR == info.type)
+  {
+    PNoteRecord notefile = NULL;
+    notefile = AccessPackageNoteFile(info.name);
+    if(NULL == notefile)
+    {
+      FreeNoteFile(notefile);
+      return ERROR_OPEN_FILE;
+    }
+    if(0 == (*count))
+    {
+      puts("Installing:");
+    }
+    printf("%16s     %16s       %16s\n", notefile -> name, notefile -> author, notefile -> version);
+    FreeNoteFile(notefile);
+    (*count)++;
+  }
+}
 /*
     Command_list
 
@@ -37,54 +58,18 @@
 CodeValue
 Command_list(void *arguments, void *extern_information)
 {
-  DIR *directory = NULL;
   char *parent_directory = "./installed";
-  struct dirent *file = NULL;
   int count = 0;
-  /* '.' means the current directory  */
-  directory = opendir(parent_directory);
-  if(!directory)
-    {
-      return CV_OPEN_DIR_FAILRUE;
-    }
   puts("================================================================");
   puts("");
   puts("     Package                  Author                 Version");
   puts("");
   puts("================================================================");
-  while(1)
+  if(ERROR_OPEN_DIRECTORY == AccessDirectory(parent_directory, file_handle, &count, 0))
     {
-      file = readdir(directory);
-      if(NULL == file)
-        {
-          break;
-        }
-      if(DT_DIR == file -> d_type)
-        {
-          PNoteRecord notefile = NULL;
-          char filename[PATH_MAXLENGTH] = {0};
-          if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
-            {
-              continue;
-            }
-          sprintf(filename, "./installed/%s/install.note", file -> d_name);
-          notefile = LoadNoteFile(filename);
-          if(NULL == notefile)
-            {
-              FreeNoteFile(notefile);
-              break;
-            }
-          if(0 == count)
-            {
-              puts("Installing:");
-            }
-          printf("%16s     %16s       %16s\n", notefile -> name, notefile -> author, notefile -> version);
-          FreeNoteFile(notefile);
-          count++;
-        }
+      return CV_INSTALL_DIRECTORY_ACCESS_FAILURE;
     }
   puts("================================================================");
   printf("Install %3d Package\n", count);
-  closedir(directory);
   return CV_SUCCESS;
 }

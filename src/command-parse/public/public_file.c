@@ -1,5 +1,6 @@
 #include "public.h"
 #include <dirent.h>
+#include <string.h>
 /*
     CopyDirectory
 
@@ -39,7 +40,7 @@ CopyDirectory(char *source, char *dest)
 
 */
 CodeStatus
-AccessDirectory(char *path, CodeStatus (*function)(FileInfo info), int flag)
+AccessDirectory(char *path, CodeStatus (*function)(FileInfo info, void *arguments), void *arguments,int flag)
 {
   DIR *directory = NULL;
   struct dirent *file = NULL;
@@ -52,9 +53,13 @@ AccessDirectory(char *path, CodeStatus (*function)(FileInfo info), int flag)
     }
   while(NULL != (file = readdir(directory)))
     {
+      if(!strcmp(file -> d_name, "..") || !strcmp(file -> d_name, "."))
+        {
+          continue;
+        }
       sprintf(info.name, "%s", file -> d_name);
       info.type = file -> d_type;
-      status = function(info);
+      status = function(info, arguments);
       if(STATUS_CONTINUE != status && flag)
         {
           closedir(directory);

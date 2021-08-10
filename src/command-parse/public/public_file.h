@@ -8,5 +8,5 @@ CodeStatus PrintFileContent(char *filename);
 CodeStatus RemoveDirectory(char *path);
 CodeStatus RemoveFile(char *filename);
 CodeStatus CopyDirectory(char *source, char *dest);
-CodeStatus AccessDirectory(char *path, CodeStatus (*function)(FileInfo info), int flag);
+CodeStatus AccessDirectory(char *path, CodeStatus (*function)(FileInfo info, void *arguments), void *arguments, int flag);
 #endif

@@ -93,3 +93,23 @@ FreeNoteFile(PNoteRecord file)
   file = NULL;
   return S_SUCCESS;
 }
+/*
+    AccessPackageRecord
+
+    Describle:
+      Access a note file in the package
+
+    Arguments:
+      file
+        A point to the note file
+
+     Return value:
+       No value
+*/
+PNoteRecord
+AccessPackageRecord(char *package_name)
+{
+  char temp[TEMP_BUFFER_LENGTH] = {0};
+  sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, DNG_EXTENSION_RECORD_FILE);
+  return LoadNoteFile(temp);
+}
