@@ -58,7 +58,7 @@ CodeStatus package_single_handle(char *package_name)
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, record -> connect_program);
   AddContentToFile("Complete.html", "<h2>");
   AddContentToFile("Complete.html", record -> name);
-  AddContentToFile("Complete.html", "<h2>");
+  AddContentToFile("Complete.html", "</h2>");
   system(temp);
   FreeNoteFile(record);
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, DNG_EXTENSION_RESULT_DIRECTORY);
