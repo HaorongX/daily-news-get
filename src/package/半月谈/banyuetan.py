@@ -25,7 +25,6 @@ def get_news_list(base_url):
                 result = str(j)
                 break
         news_url.append(result)
-    print(news_url)
     return news_url
 
 def get_news(news_url):
