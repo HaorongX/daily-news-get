@@ -24,7 +24,6 @@ CodeStatus MargeResultToFile(FileInfo info, void *argument)
       sprintf(temp, "%s/%s", info.path, info.name);
       character = strrchr(info.name, '\\');
       strncpy(title, character + 1, strlen(character) - strlen(DNG_EXTENSION_OUTPUT_FILE_SUFFIX_NAME) - strlen(".") - strlen("."));
-      puts(title);
       AddContentToFile("Complete.html", "\n<br><b>");
       AddContentToFile("Complete.html", title);
       AddContentToFile("Complete.html", "</b><br>\n");
@@ -42,6 +41,9 @@ CodeStatus package_handle(FileInfo info, void *argument)
     }
   record = AccessPackageRecord(info.name);
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, info.name, record -> connect_program);
+  AddContentToFile("Complete.html", "<h2>");
+  AddContentToFile("Complete.html", record -> name);
+  AddContentToFile("Complete.html", "</h2>");
   system(temp);
   FreeNoteFile(record);
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, info.name, DNG_EXTENSION_RESULT_DIRECTORY);
@@ -54,6 +56,9 @@ CodeStatus package_single_handle(char *package_name)
   char temp[TEMP_BUFFER_LENGTH] = {0};
   record = AccessPackageRecord(package_name);
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, record -> connect_program);
+  AddContentToFile("Complete.html", "<h2>");
+  AddContentToFile("Complete.html", record -> name);
+  AddContentToFile("Complete.html", "<h2>");
   system(temp);
   FreeNoteFile(record);
   sprintf(temp, "./%s/%s/%s", DNG_EXTENSION_INSTALL_DIRECTORY, package_name, DNG_EXTENSION_RESULT_DIRECTORY);
@@ -82,6 +87,7 @@ Command_execute(void *arguments, void *extern_information)
   char **main_argv = (char**)arguments;
   RemoveFile("Complete.html");
   CreateEmptyFile("Complete.html");
+  AddContentToFile("Complete.html", "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\">");
   if(*(int*)extern_information == 2)
     {
       AccessDirectory(DNG_EXTENSION_INSTALL_DIRECTORY, package_handle, NULL, 0);

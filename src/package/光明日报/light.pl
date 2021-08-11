@@ -1,4 +1,4 @@
-# 人民日报脚本
+# 光明日报脚本
 # 所需函数库
 
 do './formatarticle.pl';
@@ -41,15 +41,15 @@ sub GetPagesCount {
     while (1)
     {
         $count++;
-        # 人民日报在10版以前的页面都是 01 02 03
+        # 光明日报在10版以前的页面都是 01 02 03
         # 不添加0的话 会直接获取失败 从而导致错误
         if ($count < 10)
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nbs.D110000renmrb_0$count.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nbs.D110000gmrb_0$count.htm";
         }
         else
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nbs.D110000renmrb_$count.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nbs.D110000gmrb_$count.htm";
         }
         if (!$request->head($url)->is_success)
         {
@@ -73,15 +73,15 @@ sub GetPageArticleCount {
     while (1)
     {
         $count++;
-        # 人民日报在10版以前的页面都是 01 02 03
+        # 光明日报在10版以前的页面都是 01 02 03
         # 不添加0的话 会直接获取失败 从而导致错误
         if ($page < 10)
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nw.D110000renmrb_$year$mouth$day\_$count-0$page.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nw.D110000gmrb_$year$mouth$day\_$count-0$page.htm";
         }
         else
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nw.D110000renmrb_$year$mouth$day\_$count-$page.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nw.D110000gmrb_$year$mouth$day\_$count-$page.htm";
         }
         if (!$request->head($url)->is_success)
         {
@@ -108,11 +108,11 @@ sub GetSinglePageArticle {
     $page_tag1 = index($page_html,"<title>") + length("<title>");
     $page_tag2 = index($page_html,"</title>");
     $page_title = substr($page_html,$page_tag1,$page_tag2 - $page_tag1);
-    $page_tag1 = index($page_html,"<!--enpcontent-->");
-    $page_tag2 = index($page_html,"<!--/enpcontent-->");
+    $page_tag1 = index($page_html,"<!--enpcontent--><P");
+    $page_tag2 = index($page_html,"</P><!--/enpcontent-->");
     $page_html = substr($page_html,$page_tag1,$page_tag2 - $page_tag1);
     $result{'content'} = FormatArticle($page_html);
-    $result{'title'} = $page_title;
+    $result{'title'} = substr($page_title,0,length($page_title) - length("-光明日报-光明网"));
     %result;
 }
 
@@ -120,7 +120,6 @@ sub GetSinglePageArticle {
 
 sub SaveArticleToFile {
     my ($filename, $content) = @_;
-    unlink $filename;
     open(FILE, '>', $filename);
     print FILE $content;
     close(FILE);
@@ -155,15 +154,15 @@ while ($i < $count_pages)
         $url = 0;
         if ($i < 10)
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nw.D110000renmrb_$year$mouth$day\_$j-0$i.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nw.D110000gmrb_$year$mouth$day\_$j-0$i.htm";
         }
         else
         {
-            $url = "http://paper.people.com.cn/rmrb/html/$year-$mouth/$day/nw.D110000renmrb_$year$mouth$day\_$j-$i.htm";
+            $url = "https://epaper.gmw.cn/gmrb/html/$year-$mouth/$day/nw.D110000gmrb_$year$mouth$day\_$j-$i.htm";
         }
         %page_info = &GetSinglePageArticle($url);
-        SaveArticleToFile("result/$year-$mouth-$day\\人民日报\\$page_info{'title'}".".txt", $page_info{'content'});
-        print "\n<人民日报>已保存:".$page_info{'title'};
+        SaveArticleToFile("result/$year-$mouth-$day\\光明日报\\$page_info{'title'}".".txt", $page_info{'content'});
+        print "\n<光明日报>已保存:".$page_info{'title'};
     }
 }
 print "\nComplete!\n";
