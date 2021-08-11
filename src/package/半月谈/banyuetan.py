@@ -9,15 +9,22 @@ import  re
 import time
 
 def get_news_list(base_url):
-    news_list_page = requests.get(news_list_url)
+    news_list_page = requests.get(base_url)
     news_list_page.encoding = "utf-8"
     news_list_page_html = BeautifulSoup(news_list_page.text,'lxml')
-    news_list = str(news_list_page_html.find_all('a', class_='special1'))
-    temp = news_list.split()
+    news_list = news_list_page_html.find('ul',class_="clearFix").find_all("li")
     news_url = []
-    for i in temp:
-        if i[0:4]=="href":
-            news_url.append(i[6:-1])
+    today_date =  time.strftime('%Y-%m-%d',time.localtime(time.time()))
+    for i in news_list:
+        if str(i.find("span",class_="tag3")).find(today_date) == -1:
+            continue
+        now = str(i.find("a")).split('"')
+        result = ""
+        for j in now:
+            if j.find("http") != -1 and j.find("img") == -1:
+                result = str(j)
+                break
+        news_url.append(result)
     return news_url
 
 def get_news(news_url):
@@ -56,5 +63,3 @@ for i in news_url:
     news["news"] = delete_html_tag(news["news"])
     filename = time.strftime("%Y-%m-%d", time.localtime())+"\\Banyuetan\\"+news["title"]+".txt"
     write_into_file(filename, news["title"], news["news"])
-
-# print hello,world
