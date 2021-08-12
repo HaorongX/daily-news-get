@@ -16,7 +16,7 @@ def get_news_list(base_url):
 	news_url = []
 	today_date =  time.strftime('%Y-%m-%d',time.localtime(time.time()))
 	for i in news_list:
-		if str(i.find("span",class_="f-r arial cor999")).find(today_date) == -1:
+		if str(i.find("span",class_="f-r arial cor999")).find(today_date) == -1 or str(i.find("a")).find("photo") != -1:
 			continue
 		now = str(i.find("a")).split('"')
 		result = ""
@@ -25,6 +25,7 @@ def get_news_list(base_url):
 				result = str(j)
 				break
 		news_url.append(result)
+	print(news_url)
 	return news_url
 
 def get_news(news_url):
@@ -32,16 +33,17 @@ def get_news(news_url):
 	news.encoding = "utf-8"
 	news_page_details = BeautifulSoup(news.text,'lxml')
 	news_title_html = str(news_page_details.find('h1'))
-	news_html = str(news_page_details.find('div', class_='articleContent'))
+	news_html = str(news_page_details.find('div', class_='articleText'))
 	cnt = 2
 	while True:
-		page = news_url + "_" + str(cnt)
+		page = news_url[:-6] + "_" + str(cnt) + ".shtml"
 		news = requests.get(page)
+		print(page+"\n")
 		if news.status_code == 404:
 			break
 		news.encoding = "utf-8"
 		news_page_details = BeautifulSoup(news.text,'lxml')
-		news_html += str(news_page_details.find('div', class_='articleContent'))
+		news_html += str(news_page_details.find('div', class_='articleText'))
 		cnt += 1
 	return {"title":news_title_html,"news":news_html}
 
