@@ -54,10 +54,17 @@ os.system("rm -rf result")
 os.mkdir("result")
 
 news_list_url = "http://www.banyuetan.org/byt/jinritan/index.html"
+print("正在获取新闻列表......")
 news_url = get_news_list(news_list_url)
+print("完成！\n")
+
+if len(news_url) == 0:
+    print("哎呀，真不巧，今天没有发布新闻呢。")
 
 for i in news_url:
+    print("正在获取新闻......")
     news = get_news(i)
+    print("完成！\n")
     # 删除标签及正文中的html标签
     news["title"] = delete_html_tag(news["title"])
     news["news"] = delete_html_tag(news["news"])
