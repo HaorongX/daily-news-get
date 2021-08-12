@@ -34,13 +34,15 @@ def get_news(news_url):
 	news_page_details = BeautifulSoup(news.text,'lxml')
 	news_title_html = str(news_page_details.find('h1'))
 	news_html = str(news_page_details.find('div', class_='articleText'))
+	if news_page_details.find('ul',class_='pageUl') != None:
+		page_cnt = len( news_page_details.find('ul',class_='pageUl').find_all('li') ) - 3 + 1
+	else:
+		return {"title":news_title_html,"news":news_html}
 	cnt = 2
-	while True:
+	while cnt <= page_cnt:
 		page = news_url[:-6] + "_" + str(cnt) + ".shtml"
 		news = requests.get(page)
 		print(page+"\n")
-		if news.status_code == 404:
-			break
 		news.encoding = "utf-8"
 		news_page_details = BeautifulSoup(news.text,'lxml')
 		news_html += str(news_page_details.find('div', class_='articleText'))
@@ -80,5 +82,5 @@ for i in news_url:
 	# 删除标签及正文中的html标签
 	news["title"] = delete_html_tag(news["title"])
 	news["news"] = delete_html_tag(news["news"])
-	filename = time.strftime("%Y-%m-%d", time.localtime())+"\\Banyuetan\\"+news["title"]+".txt"
+	filename = time.strftime("%Y-%m-%d", time.localtime())+"\\参考消息\\"+news["title"]+".txt"
 	write_into_file(filename, news["title"], news["news"])
