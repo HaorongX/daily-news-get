@@ -7,24 +7,40 @@ from bs4 import BeautifulSoup
 import sys
 import  re
 import time
+import datetime
 
 def get_news_list(base_url):
-	news_list_page = requests.get(base_url)
-	news_list_page.encoding = "utf-8"
-	news_list_page_html = BeautifulSoup(news_list_page.text,'lxml')
-	news_list = news_list_page_html.find('ul',class_="txt-list-a fz-14 clear").find_all("li")
-	news_url = []
-	today_date =  time.strftime('%Y-%m-%d',time.localtime(time.time()))
-	for i in news_list:
-		if str(i.find("span",class_="f-r arial cor999")).find(today_date) == -1 or str(i.find("a")).find("photo") != -1:
-			continue
-		now = str(i.find("a")).split('"')
-		result = ""
-		for j in now:
-			if j.find("http") != -1:
-				result = str(j)
+	end_of_news = True
+	page_cnt = 1
+	page_url = ""
+	while end_of_news:
+		page_url = base_url + str(page_cnt) + ".shtml"
+		print(page_url)
+		news_list_page = requests.get(page_url)
+		news_list_page.encoding = "utf-8"
+		news_list_page_html = BeautifulSoup(news_list_page.text,'lxml')
+		news_list = news_list_page_html.find('ul',class_="txt-list-a fz-14 clear").find_all("li")
+		news_url = []
+		yesterday_date =  (datetime.date.today() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d")
+		flag = False
+		for i in news_list:
+			if i.find("a") == None:
+				continue
+			if str(i.find("span",class_="f-r arial cor999")).find(yesterday_date) == -1 and flag:
+				print("End At",page_url,str(i.find("a")),"\n")
+				end_of_news = False
 				break
-		news_url.append(result)
+			if str(i.find("span",class_="f-r arial cor999")).find(yesterday_date) == -1 or str(i.find("a")).find("photo") != -1:
+				continue
+			flag = True
+			now = str(i.find("a")).split('"')
+			result = ""
+			for j in now:
+				if j.find("http") != -1:
+					result = str(j)
+					break
+			news_url.append(result)
+		page_cnt += 1
 	print(news_url)
 	return news_url
 
