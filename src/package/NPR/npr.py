@@ -57,5 +57,6 @@ for i in news_url:
     # 删除标签及正文中的html标签
     news["title"] = delete_html_tag(news["title"])
     news["news"] = delete_html_tag(news["news"])
-    filename = time.strftime("%Y-%b-%d", time.localtime())+"NPR"+news["title"]
+    filename = time.strftime("%Y-%m-%d", time.localtime())+"\\NPR\\"+news["title"]+".txt"
     write_into_file(filename, news["title"], news["news"])
+ 
