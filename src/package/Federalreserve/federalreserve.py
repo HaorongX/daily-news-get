@@ -4,6 +4,7 @@ import requests
 import lxml
 from bs4 import BeautifulSoup
 import os
+import sys
 import re
 import time
 
@@ -14,7 +15,7 @@ def delete_html_tag(string):
 
 # 将新闻写入文件
 def write_into_file(file_name,title,article):
-    file = open(file_name,"w")
+    file = open(sys.path[0]+"/result/"+file_name,"w+")
     file.write(title)
     file.write("\n")
     file.write(article)
@@ -50,16 +51,20 @@ def get_news(news_url):
     news.encoding = "utf-8"
     news_page_details = BeautifulSoup(news.text,'lxml')
     # 获取内容&标题栏
-    news_title_html = str(news_page_details.find_all('h3', class_='title'))
-    news_html = str(news_page_details.find_all('div', class_='col-xs-12 col-sm-8 col-md-8'))
+    news_title_html = str(news_page_details.find('h3', class_='title'))
+    news_html = str(news_page_details.find('div', class_='col-xs-12 col-sm-8 col-md-8'))
     news_title_html = delete_html_tag(news_title_html)
     news_html = delete_html_tag(news_html)
     return {"title":news_title_html,"news":news_html}
 
 # -------------------------
+
+os.system("rm -rf result")
+os.mkdir("result")
+
 news_list = get_news_list("https://www.federalreserve.gov/newsevents.htm")
 
 for i in news_list:
     news = get_news(i)
-    filename = time.strftime("%Y-%b-%d", time.localtime())+"-Federalreserve-"+news["title"]
+    filename = time.strftime("%Y-%b-%d", time.localtime())+"\\美联储\\"+news["title"]
     write_into_file(filename, news["title"], news["news"])
