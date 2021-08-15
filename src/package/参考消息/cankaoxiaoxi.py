@@ -13,14 +13,14 @@ def get_news_list(base_url):
 	end_of_news = True
 	page_cnt = 1
 	page_url = ""
+	news_url = []
 	while end_of_news:
 		page_url = base_url + str(page_cnt) + ".shtml"
-		print(page_url)
+		# print(page_url)
 		news_list_page = requests.get(page_url)
 		news_list_page.encoding = "utf-8"
 		news_list_page_html = BeautifulSoup(news_list_page.text,'lxml')
 		news_list = news_list_page_html.find('ul',class_="txt-list-a fz-14 clear").find_all("li")
-		news_url = []
 		yesterday_date =  (datetime.date.today() + datetime.timedelta(days=-1)).strftime("%Y-%m-%d")
 		flag = False
 		for i in news_list:
@@ -33,6 +33,7 @@ def get_news_list(base_url):
 			if str(i.find("span",class_="f-r arial cor999")).find(yesterday_date) == -1 or str(i.find("a")).find("photo") != -1:
 				continue
 			flag = True
+			# print("Found!")
 			now = str(i.find("a")).split('"')
 			result = ""
 			for j in now:
@@ -40,8 +41,9 @@ def get_news_list(base_url):
 					result = str(j)
 					break
 			news_url.append(result)
+			# print(result,news_url)
 		page_cnt += 1
-	print(news_url)
+	# print(news_url)
 	return news_url
 
 def get_news(news_url):
@@ -53,12 +55,13 @@ def get_news(news_url):
 	if news_page_details.find('ul',class_='pageUl') != None:
 		page_cnt = len( news_page_details.find('ul',class_='pageUl').find_all('li') ) - 3 + 1
 	else:
+		# print("single page",news_url)
 		return {"title":news_title_html,"news":news_html}
 	cnt = 2
 	while cnt <= page_cnt:
 		page = news_url[:-6] + "_" + str(cnt) + ".shtml"
 		news = requests.get(page)
-		print(page+"\n")
+		# print(page+"\n")
 		news.encoding = "utf-8"
 		news_page_details = BeautifulSoup(news.text,'lxml')
 		news_html += str(news_page_details.find('div', class_='articleText'))
