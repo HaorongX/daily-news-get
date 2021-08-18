@@ -80,6 +80,7 @@ PrepareRules(PFunctionRules rules)
   AddFunctionRule(rules, Command_version, "-v");
   AddFunctionRule(rules, Command_install, "install");
   AddFunctionRule(rules, Command_remove, "remove");
+  AddFunctionRule(rules, Command_open, "open");
   AddFunctionRule(rules, Command_remove, "uninstall");
   AddFunctionRule(rules, Command_list, "list");
   AddFunctionRule(rules, Command_list, "--list");

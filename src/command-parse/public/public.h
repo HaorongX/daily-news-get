@@ -19,4 +19,5 @@
 #include "public_type.h"
 #include "public_file.h"
 #include "public_string.h"
+#include "public_package.h"
 #endif

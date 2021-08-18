@@ -5,5 +5,6 @@ sub FormatArticle {
     $content =~ s/&nbsp;//g;
     $content =~ s/nbsp;//g;
     $content =~ s/<P align=center>/<P>/g;
+    $content =~ s/<[^>]*>//g;
     $content;
 }

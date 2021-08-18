@@ -19,6 +19,10 @@ CodeStatus file_handle(FileInfo info, void *arguments)
   if(DT_DIR == info.type)
   {
     PNoteRecord notefile = NULL;
+    if(IsRemove(info.name))
+      {
+        return S_SUCCESS;
+      }
     notefile = AccessPackageNoteFile(info.name);
     if(NULL == notefile)
     {
@@ -33,6 +37,7 @@ CodeStatus file_handle(FileInfo info, void *arguments)
     FreeNoteFile(notefile);
     (*count)++;
   }
+  return S_SUCCESS;
 }
 /*
     Command_list

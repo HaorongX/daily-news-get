@@ -18,6 +18,7 @@ CodeValue Command_help(void *arguments, void *extern_info);
 CodeValue Command_version(void *arguments, void *extern_info);
 CodeValue Command_install(void *arguments, void *extern_info);
 CodeValue Command_remove(void *arguments, void *extern_info);
+CodeValue Command_open(void *arguments,void *extern_info);
 CodeValue Command_list(void *arguments, void *extern_info);
 CodeValue Command_execute(void *arguments, void *extern_info);
 CodeValue Command_clean(void *arguments, void *extern_info);

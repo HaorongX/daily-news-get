@@ -68,6 +68,8 @@ Command_help(void *arguments, void *extern_information)
   puts("remove [name]");
   puts("  使一个拓展处于关闭状态");
   puts("  如果需要完全移除拓展,请使用 'dng clean' 指令");
+  puts("open [name]");
+  puts("  使一个拓展处于开启状态");
   puts("clean [name]");
   puts("  彻底清除一个拓展");
   puts("execute [name]");
