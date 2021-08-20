@@ -45,7 +45,7 @@ sub SaveContentToFile {
 # 公开行程
 
 $content = GatherScheduleArticle();
-print "美国国务院最新行程获取完成\n";
+print "已获取<国务新闻>:美国国务院最新行程\n";
 SaveContentToFile("美国国务最新行程安排",$content);
 
 # 公开简报
@@ -57,7 +57,7 @@ while($i < $count)
 {
     ($title,$content) = GatherSingleArticle($url[$i]);
     SaveContentToFile($title,$content);
-    print "已获取:$title\n";
+    print "已获取<国务新闻>:$title\n";
     $i++;
 }
 
@@ -70,8 +70,6 @@ while($i < $count)
 {
     ($title,$content) = GatherSinglePressArticle($url[$i]);
     SaveContentToFile($title,$content);
-    print "已获取:$title\n";
+    print "已获取<国务新闻>:$title\n";
     $i++;
 }
-
-print "Complete!\n";

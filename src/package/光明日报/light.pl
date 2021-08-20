@@ -162,7 +162,6 @@ while ($i < $count_pages)
         }
         %page_info = &GetSinglePageArticle($url);
         SaveArticleToFile("result/$year-$mouth-$day\\光明日报\\$page_info{'title'}".".txt", $page_info{'content'});
-        print "\n<光明日报>已保存:".$page_info{'title'};
+        print "\n已获取<光明日报>:".$page_info{'title'};
     }
 }
-print "\nComplete!\n";

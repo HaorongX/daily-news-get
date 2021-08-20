@@ -61,26 +61,19 @@ os.mkdir("result")
 
 header = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"}
 
-print("获取新闻地址......")
+print(".")
 news_list_url = "https://www.npr.org/programs/morning-edition/"
 news_url = get_news_list(news_list_url,header)
-print("完成！")
 
-print("获取文章......")
 news = get_news(news_url)
-print("完成！")
 # 删除标签及正文中的html标签
 news["title"] = delete_html_tag(news["title"])
 news["news"] = delete_html_tag(news["news"])
 filename = time.strftime("%Y-%m-%d", time.localtime())+"\\NPR\\"+news["title"]+".txt"
 write_into_file(filename, news["title"], news["news"])
 filename = time.strftime("%Y-%m-%d", time.localtime())+"\\NPR\\"+news["title"]+".mp3"
-print(filename)
-print("获取音频文件......")
+print("已获取<NPR新闻>：",news["title"])
 mp3_file = requests.get(news["mp3"])
-print("完成！")
-print("保存文件......")
 f = open(sys.path[0]+"/result/"+filename,"wb")
 f.write(mp3_file.content)
 f.close()
-print("完成！")

@@ -67,4 +67,5 @@ news_list = get_news_list("https://www.federalreserve.gov/newsevents.htm")
 for i in news_list:
     news = get_news(i)
     filename = time.strftime("%Y-%b-%d", time.localtime())+"\\美联储\\"+news["title"]
+    print("已获取<美联储新闻>:",news["title"]);
     write_into_file(filename, news["title"], news["news"])

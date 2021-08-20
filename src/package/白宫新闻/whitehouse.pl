@@ -25,18 +25,6 @@ sub GetDay {
 
 mkdir("result");
 
-# 遍历并获取文章
-
-sub SaveContentToFile {
-    my ($title,$content) = @_;
-    my $year = GetYear();
-    my $mouth = GetMouth();
-    my $day = GetDay();
-    open (FILE,">./result/$year-$mouth-$day\\白宫新闻\\$title.txt");
-    print FILE $content;
-    close FILE;
-}
-
 # 获取列表
 
 sub GatherBriefingRoomLinks {
@@ -52,7 +40,7 @@ sub GatherBriefingRoomLinks {
     my $first_flag = 0;
     $page = LWP::UserAgent->new;
     $content = $page->get("https://www.whitehouse.gov/briefing-room/")->content;
-    while (true) {
+    while (1) {
 	$start = index($content,"<a class=\"news-item__title\" href=");
 	if(-1 == $start)
 	{
@@ -123,8 +111,7 @@ while($i < $count)
 {
     ($title,$content) = GatherSinglePressArticle($url[$i]);
     SaveContentToFile($title,$content);
-    print "已获取:$title\n";
+    print "已获取<白宫新闻>:$title\n";
     $i++;
 }
 
-print "Complete!\n";
