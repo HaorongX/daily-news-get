@@ -62,7 +62,7 @@ os.mkdir("result")
 header = {"User-Agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36"}
 
 print(".")
-news_list_url = "https://www.npr.org/programs/morning-edition/"
+news_list_url = "https://www.npr.org/programs/all-things-considered/"
 news_url = get_news_list(news_list_url,header)
 
 news = get_news(news_url)
